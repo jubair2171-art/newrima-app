@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>New Rima Best Trading</title>
+
+<!-- PWA Meta Tags -->
+<meta name="application-name" content="New Rima"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="New Rima"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#c9a84c"/>
+<meta name="description" content="New Rima Best Trading — Staff Portal"/>
+
+<!-- App Icon (inline SVG as data URL) -->
+<link rel="apple-touch-icon" href="/icon-192.png"/>
+<link rel="icon" href="/icon-192.png"/>
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="/manifest.json"/>
+<link rel="apple-touch-icon" href="/icon-192.png"/>
+<script>
+// Force update service worker cache
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.getRegistrations().then(regs=>{
+    regs.forEach(reg=>reg.update());
+  });
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#f0f4ff;--card:#ffffff;--border:#e0e6f0;--gold:#c9a84c;--gold2:#e8c97a;
+  --cream:#1a1a2e;--red:#b5341e;--green:#2d8a4e;--blue:#1e6cb5;--white:#1a1a2e;
+  --text:#555;
+}
+body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;}
+
+/* LOGIN */
+#loginPage{
+  display:flex;align-items:center;justify-content:center;min-height:100vh;
+  background:linear-gradient(160deg,#f8f9ff 0%,#eef1ff 50%,#e8f4ff 100%);
+  padding:1.5rem;
+}
+.login-box{
+  width:100%;max-width:400px;text-align:center;
+}
+.login-top{
+  margin-bottom:2rem;
+}
+.login-logo{
+  font-family:"Playfair Display",serif;font-size:2.2rem;color:#1a1a2e;
+  font-weight:700;letter-spacing:0.02em;
+}
+.login-logo span{color:var(--gold);}
+.login-tagline{
+  font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(30,30,60,0.5);margin-top:0.3rem;
+}
+.login-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;margin-bottom:1.5rem;}
+.role-btn{
+  padding:1.2rem 0.5rem 1rem;border:none;background:rgba(255,255,255,0.9);
+  color:#444;font-family:"DM Sans",sans-serif;font-size:0.78rem;
+  cursor:pointer;transition:all 0.25s;border-radius:16px;
+  backdrop-filter:blur(10px);border:2px solid rgba(0,0,0,0.08);
+  display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+.role-btn .r-icon{font-size:2rem;}
+.role-btn .r-label{font-size:0.75rem;font-weight:500;}
+.role-btn:hover{background:rgba(255,255,255,0.15);transform:translateY(-2px);}
+.role-btn.active.operator{
+  background:linear-gradient(135deg,#1e4d8c,#1e6cb5);
+  border-color:rgba(110,170,255,0.5);color:#fff;
+  box-shadow:0 8px 25px rgba(30,108,181,0.4);transform:translateY(-3px);
+}
+.role-btn.active.storekeeper{
+  background:linear-gradient(135deg,#1a5c35,#2d8a4e);
+  border-color:rgba(93,200,126,0.5);color:#fff;
+  box-shadow:0 8px 25px rgba(45,138,78,0.4);transform:translateY(-3px);
+}
+.role-btn.active.owner{
+  background:linear-gradient(135deg,#7a5c10,#c9a84c);
+  border-color:rgba(232,201,122,0.5);color:#fff;
+  box-shadow:0 8px 25px rgba(201,168,76,0.4);transform:translateY(-3px);
+}
+.login-form{
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:20px;
+  padding:1.8rem 1.5rem;
+  box-shadow:0 10px 40px rgba(0,0,0,0.1);
+}
+.login-form-title{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(0,0,0,0.4);margin-bottom:1rem;}
+.login-input{
+  width:100%;background:#f5f5f5;
+  border:1.5px solid rgba(0,0,0,0.1);
+  color:#222;padding:1rem 1.2rem;font-family:"DM Sans",sans-serif;font-size:0.95rem;
+  outline:none;margin-bottom:1rem;transition:all 0.2s;border-radius:12px;
+}
+.login-input::placeholder{color:rgba(0,0,0,0.3);}
+.login-input:focus{border-color:var(--gold);background:#fff;}
+.login-btn{
+  width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);
+  color:#000;padding:1rem;font-size:0.95rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;
+  transition:all 0.2s;border-radius:12px;
+  box-shadow:0 6px 20px rgba(201,168,76,0.4);
+}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,168,76,0.5);}
+.login-btn:active{transform:translateY(0);}
+.login-error{color:#ff6b6b;font-size:0.85rem;margin-top:0.8rem;display:none;
+  background:rgba(255,107,107,0.1);padding:0.5rem;border-radius:8px;}
+
+/* APP */
+#app{display:none;}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+.topbar-logo{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--gold);}
+.topbar-right{display:flex;align-items:center;gap:0.8rem;}
+.role-badge{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:20px;}
+.role-badge.operator{background:rgba(30,108,181,0.2);color:#6ab0f5;border:1px solid #1e6cb5;}
+.role-badge.storekeeper{background:rgba(45,138,78,0.2);color:#5dc87e;border:1px solid #2d8a4e;}
+.role-badge.owner{background:rgba(201,168,76,0.2);color:var(--gold);border:1px solid var(--gold);}
+.logout-btn{background:transparent;border:1px solid var(--border);color:var(--text);
+  padding:0.4rem 0.9rem;font-size:0.8rem;cursor:pointer;border-radius:6px;transition:all 0.2s;}
+.logout-btn:hover{border-color:var(--red);color:var(--red);}
+
+/* MAIN */
+.main-wrap{padding-top:70px;min-height:100vh;}
+
+/* PAGE */
+.page{display:none;padding:1.5rem 1.1rem 1rem;}
+.page.active{display:block;}
+
+/* BACK BTN */
+.back-btn{display:inline-flex;align-items:center;gap:0.5rem;background:#fff;
+  border:1px solid #dde5f5;color:#555;padding:0.5rem 1.1rem;font-size:0.82rem;
+  cursor:pointer;border-radius:20px;margin-bottom:1rem;transition:all 0.2s;
+  font-family:"DM Sans",sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.back-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* FOLDER GRID */
+.folder-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-top:0.5rem;}
+.folder-card{
+  border-radius:20px;padding:1.8rem 0.8rem 1.4rem;text-align:center;
+  cursor:pointer;transition:all 0.22s;
+  border:1.5px solid #e4eaf8;
+  background:#fff;
+  box-shadow:0 2px 16px rgba(80,100,180,0.08);
+  position:relative;overflow:hidden;
+}
+.folder-card::after{
+  content:'›';position:absolute;bottom:0.6rem;right:0.9rem;
+  font-size:1rem;color:rgba(0,0,0,0.15);
+}
+.folder-card:active{transform:scale(0.95);}
+.folder-card:hover{border-color:var(--gold);box-shadow:0 6px 24px rgba(201,168,76,0.2);transform:translateY(-3px);}
+.f-icon{font-size:3rem;display:block;margin-bottom:0.7rem;}
+.f-name{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.4rem;}
+.f-count{font-size:0.7rem;color:var(--gold);background:rgba(201,168,76,0.12);
+  display:inline-block;padding:0.2rem 0.7rem;border-radius:20px;font-weight:600;}
+.folder-shoes{border-color:rgba(30,108,181,0.25);background:linear-gradient(145deg,#f0f6ff,#fff);}
+.folder-clothes{border-color:rgba(150,80,200,0.25);background:linear-gradient(145deg,#f8f0ff,#fff);}
+.folder-acc{border-color:rgba(45,138,78,0.25);background:linear-gradient(145deg,#f0fff5,#fff);}
+.folder-women{border-color:rgba(220,80,180,0.3);background:linear-gradient(145deg,#fff0fa,#fff);}
+.folder-men{border-color:rgba(30,108,181,0.3);background:linear-gradient(145deg,#f0f5ff,#fff);}
+.folder-unisex{border-color:rgba(201,168,76,0.35);background:linear-gradient(145deg,#fffbf0,#fff);}
+.folder-owner{border-color:rgba(201,168,76,0.4);background:linear-gradient(145deg,#fffbf0,#fff);}
+.folder-owner .f-name{color:#a07820;}
+
+/* PAGE HEADER */
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.page-title{font-family:"Playfair Display",serif;font-size:1.4rem;color:#1a1a2e;font-weight:700;}
+.page-sub{font-size:0.78rem;color:#888;margin-top:0.2rem;}
+.greeting{font-family:"Playfair Display",serif;font-size:1.6rem;color:#0a0a1a;margin-bottom:0.3rem;font-weight:900;letter-spacing:-0.01em;text-shadow:none;}
+.greeting-sub{font-size:0.85rem;color:#444;margin-bottom:1.2rem;font-weight:600;}
+
+/* BTN */
+.btn{padding:0.55rem 1.2rem;font-size:0.82rem;font-weight:500;border:none;cursor:pointer;
+  transition:all 0.2s;border-radius:6px;font-family:"DM Sans",sans-serif;}
+.btn-gold{background:var(--gold);color:#000;}
+.btn-gold:hover{background:var(--gold2);}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--cream);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.btn-red{background:var(--red);color:#fff;}
+.btn-sm{padding:0.35rem 0.8rem;font-size:0.75rem;}
+
+/* SEARCH & TABS */
+.search-input{width:100%;background:#fff;border:1px solid #dde5f5;
+  color:#1a1a2e;padding:0.7rem 1rem;font-family:"DM Sans",sans-serif;font-size:0.88rem;
+  outline:none;border-radius:8px;margin-bottom:0.8rem;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.search-input:focus{border-color:var(--gold);}
+.branch-tabs{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;}
+.branch-tab{padding:0.4rem 1rem;border:1px solid var(--border);background:transparent;
+  color:var(--text);font-size:0.78rem;cursor:pointer;border-radius:20px;transition:all 0.2s;
+  font-family:"DM Sans",sans-serif;}
+.branch-tab.active{background:var(--gold);color:#000;border-color:var(--gold);}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.card{background:#fff;border:1px solid #e8eef8;border-radius:12px;overflow:hidden;
+  transition:all 0.2s;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,168,76,0.15);}
+.card-img{height:160px;background:#f5f8ff;display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;position:relative;}
+.card-img-count{position:absolute;bottom:0.4rem;right:0.4rem;background:rgba(0,0,0,0.7);
+  color:var(--gold);font-size:0.65rem;padding:0.15rem 0.4rem;border-radius:3px;}
+.card-body{padding:0.9rem;}
+.card-brand{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.2rem;}
+.card-name{font-size:0.95rem;font-weight:600;color:#1a1a2e;margin-bottom:0.6rem;}
+.sizes-row{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.6rem;}
+.size-chip{padding:0.2rem 0.45rem;font-size:0.68rem;border-radius:3px;border:1px solid;}
+.size-avail{background:rgba(45,138,78,0.15);color:#5dc87e;border-color:rgba(45,138,78,0.4);}
+.size-unavail{background:rgba(181,52,30,0.1);color:#e07070;border-color:rgba(181,52,30,0.3);opacity:0.5;}
+.card-price{font-size:1rem;font-weight:600;color:var(--gold);}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.6rem;
+  padding-top:0.6rem;border-top:1px solid var(--border);}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.5rem;}
+.stat-card{background:#fff;border:1px solid #e8eef8;border-radius:10px;padding:1rem;box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+.stat-num{font-family:"Playfair Display",serif;font-size:1.6rem;color:var(--gold);}
+.stat-label{font-size:0.7rem;opacity:0.5;text-transform:uppercase;letter-spacing:0.1em;margin-top:0.2rem;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;
+  display:none;align-items:flex-end;justify-content:center;padding:0;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border:1px solid #e0e8f5;border-radius:16px 16px 0 0;
+  width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 -8px 30px rgba(0,0,0,0.12);}
+.modal-header{display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);}
+.modal-title{font-family:"Playfair Display",serif;font-size:1.2rem;color:#1a1a2e;}
+.modal-close{background:transparent;border:none;color:#888;font-size:1.5rem;cursor:pointer;}
+.modal-body{padding:1.2rem 1.5rem;}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:0.8rem;}
+.form-group{margin-bottom:1rem;}
+.form-label{display:block;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.6;margin-bottom:0.4rem;}
+.form-input,.form-select,.form-textarea{width:100%;background:#f5f8ff;
+  border:1px solid #dde5f5;color:#1a1a2e;padding:0.75rem 1rem;
+  font-family:"DM Sans",sans-serif;font-size:0.9rem;outline:none;border-radius:8px;transition:border-color 0.2s;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);}
+.form-select option{background:#fff;color:#1a1a2e;}
+.form-textarea{resize:vertical;min-height:80px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+.sizes-manager{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem;}
+.size-toggle{padding:0.35rem 0.7rem;border:1px solid var(--border);background:transparent;
+  color:var(--text);font-size:0.78rem;cursor:pointer;border-radius:4px;transition:all 0.2s;
+  font-family:"DM Sans",sans-serif;}
+.size-toggle.selected{background:rgba(201,168,76,0.2);border-color:var(--gold);color:var(--gold);}
+.media-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(85px,1fr));gap:0.6rem;margin-top:0.4rem;}
+.media-thumb{height:80px;background:#111;border:1px solid var(--border);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;
+  transition:border-color 0.2s;position:relative;}
+.media-thumb:hover{border-color:var(--gold);}
+.del-media{position:absolute;top:3px;right:3px;background:var(--red);color:#fff;
+  border:none;border-radius:50%;width:18px;height:18px;font-size:0.65rem;cursor:pointer;
+  display:none;align-items:center;justify-content:center;}
+.media-thumb:hover .del-media{display:flex;}
+.upload-thumb{border:1px dashed var(--border);cursor:pointer;color:var(--text);
+  flex-direction:column;gap:0.2rem;font-size:1.3rem;}
+.upload-thumb span{font-size:0.65rem;}
+.stock-table{width:100%;border-collapse:collapse;margin-top:0.8rem;}
+.stock-table th{text-align:left;padding:0.6rem;font-size:0.7rem;letter-spacing:0.1em;
+  text-transform:uppercase;opacity:0.5;border-bottom:1px solid var(--border);}
+.stock-table td{padding:0.6rem;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.85rem;}
+.stock-input{width:60px;background:rgba(255,255,255,0.06);border:1px solid var(--border);
+  color:var(--cream);padding:0.3rem 0.4rem;text-align:center;border-radius:4px;font-size:0.85rem;}
+.plus-btn,.minus-btn{width:28px;height:28px;border:none;border-radius:4px;cursor:pointer;font-size:1rem;font-weight:600;}
+.plus-btn{background:rgba(45,138,78,0.3);color:#5dc87e;}
+.plus-btn:hover{background:rgba(45,138,78,0.6);}
+.minus-btn{background:rgba(181,52,30,0.3);color:#e07070;}
+.minus-btn:hover{background:rgba(181,52,30,0.6);}
+.empty-state{text-align:center;padding:3rem 1rem;opacity:0.4;grid-column:1/-1;}
+.empty-state .icon{font-size:2.5rem;margin-bottom:0.8rem;}
+.img-viewer{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:600;
+  display:none;align-items:center;justify-content:center;flex-direction:column;}
+.img-viewer.open{display:flex;}
+.img-viewer img{max-width:95%;max-height:80vh;object-fit:contain;border-radius:8px;}
+.img-viewer-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.2);
+  color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.3rem;cursor:pointer;}
+.img-viewer-actions{display:flex;gap:1rem;margin-top:1.2rem;}
+.img-viewer-btn{padding:0.7rem 1.5rem;border-radius:20px;font-size:0.88rem;
+  font-family:DM Sans,sans-serif;cursor:pointer;font-weight:600;border:none;}
+.notif{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);
+  background:var(--green);color:#fff;padding:0.7rem 1.5rem;border-radius:20px;
+  font-size:0.85rem;z-index:300;opacity:0;transition:all 0.3s;white-space:nowrap;}
+.notif.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.notif.error{background:var(--red);}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <div class="login-box">
+    <div class="login-top">
+      <div class="login-logo">New <span>Rima</span></div>
+      <div class="login-tagline">Best Trading — Staff Portal</div>
+    </div>
+    <div class="login-cards">
+      <button class="role-btn operator" onclick="selectRole('operator')">
+        <span class="r-icon">👨‍💼</span>
+        <span class="r-label">Operator</span>
+      </button>
+      <button class="role-btn storekeeper" onclick="selectRole('storekeeper')">
+        <span class="r-icon">🏪</span>
+        <span class="r-label">Storekeeper</span>
+      </button>
+      <button class="role-btn owner" onclick="selectRole('owner')">
+        <span class="r-icon">👑</span>
+        <span class="r-label">Owner</span>
+      </button>
+    </div>
+    <div class="login-form">
+      <div class="login-form-title">Enter your password</div>
+      <input class="login-input" type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+      <button class="login-btn" onclick="doLogin()">LOGIN →</button>
+      <div class="login-error" id="loginError">❌ Wrong password. Try again.</div>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-logo">New Rima</div>
+    <div class="topbar-right">
+      <button id="installBtn" onclick="installApp()" style="display:none;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#000;border:none;padding:0.35rem 0.8rem;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">📲 Install</button>
+      <button id="switchRoleBtn" onclick="openSwitchRole()" style="display:none;background:linear-gradient(135deg,#1e6cb5,#3a8fd4);color:#fff;border:none;padding:0.4rem 1rem;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;box-shadow:0 2px 8px rgba(30,108,181,0.3);">🔄 Switch Role</button>
+      <span class="role-badge" id="roleBadge"></span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="main-wrap">
+
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+      <div class="greeting" id="home-greeting">Welcome</div>
+      <div class="greeting-sub">New Rima Best Trading — Select a category</div>
+      <div class="folder-grid" id="home-folders"></div>
+    </div>
+
+    <!-- SHOES L1: Gender -->
+    <div class="page" id="page-shoes">
+      <button class="back-btn" onclick="goTo('home')">← Back</button>
+      <div class="page-header">
+        <div><div class="page-title">👟 Shoes</div></div>
+        <button class="btn btn-gold btn-sm" id="btnAddShoe" style="display:none" onclick="openAdd('shoes')">+ Add</button>
+      </div>
+      <div class="folder-grid" id="shoes-gender"></div>
+    </div>
+
+    <!-- SHOES L2: Brand -->
+    <div class="page" id="page-shoes-brand">
+      <button class="back-btn" onclick="goTo('shoes')">← Back</button>
+      <div class="page-header">
+        <div><div class="page-title" id="title-brand">Brands</div></div>
+        <button class="btn btn-gold btn-sm" id="btnAddShoe2" style="display:none" onclick="openAdd('shoes')">+ Add</button>
+      </div>
+      <div class="folder-grid" id="shoes-brands"></div>
+    </div>
+
+    <!-- SHOES L3: Shoe Names -->
+    <div class="page" id="page-shoes-names">
+      <button class="back-btn" onclick="goTo('shoes-brand')">← Back</button>
+      <div class="page-header">
+        <div><div class="page-title" id="title-names">Models</div></div>
+        <button class="btn btn-gold btn-sm" id="btnAddShoe3" style="display:none" onclick="openAdd('shoes')">+ Add</button>
+      </div>
+      <div class="folder-grid" id="shoes-names"></div>
+    </div>
+
+    <!-- SHOES L4: Products -->
+    <div class="page" id="page-shoes-products">
+      <button class="back-btn" onclick="goTo('shoes-names')">← Back</button>
+      <div class="page-header">
+        <div><div class="page-title" id="title-products">Products</div></div>
+      </div>
+      <div class="branch-tabs" id="shoes-branch-tabs"></div>
+      <div class="cards-grid" id="shoes-cards"></div>
+    </div>
+
+    <!-- CLOTHES -->
+    <div class="page" id="page-clothes">
+      <button class="back-btn" onclick="goTo('home')">← Back</button>
+      <div class="page-header">
+        <div><div class="page-title">👕 Clothes</div></div>
+        <button class="btn btn-gold btn-sm" id="btnAddCloth" style="display:none" onclick="openAdd('clothes')">+ Add</button>
+      </div>
+      <div class="branch-tabs" id="clothes-branch-tabs"></div>
+      <div class="cards-grid" id="clothes-cards"></div>
+    </div>
+
+    <!-- ACCESSORIES -->
+    <div class="page" id="page-accessories">
+      <button class="back-btn" onclick="goTo('home')">← Back</button>
+      <div class="page-header">
+        <div><div class="page-title">📱 Accessories</div></div>
+        <button class="btn btn-gold btn-sm" id="btnAddAcc" style="display:none" onclick="openAdd('accessories')">+ Add</button>
+      </div>
+      <div class="branch-tabs" id="accessories-branch-tabs"></div>
+      <div class="cards-grid" id="accessories-cards"></div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="page" id="page-dashboard">
+      <button class="back-btn" onclick="goTo('home')">← Back</button>
+      <div class="page-header"><div><div class="page-title">📊 Dashboard</div></div></div>
+      <div class="stats-grid" id="dash-stats"></div>
+      <div id="dash-branches"></div>
+    </div>
+
+    <!-- BRANCHES -->
+    <div class="page" id="page-branches">
+      <button class="back-btn" onclick="goTo('home')">← Back</button>
+      <div class="page-header">
+        <div><div class="page-title">🏪 Branches</div></div>
+        <button class="btn btn-gold btn-sm" onclick="openAddBranch()">+ Add Branch</button>
+      </div>
+      <div class="cards-grid" id="branches-cards"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ADD PRODUCT MODAL -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="addModalTitle">Add Product</div>
+      <button class="modal-close" onclick="closeModal('addModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Brand</label>
+          <input class="form-input" id="inp-brand" placeholder="e.g. Nike"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Product Name</label>
+          <input class="form-input" id="inp-name" placeholder="e.g. Jordan 1"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="inp-cat">
+            <option>Women</option><option>Men</option><option>Unisex</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Made In</label>
+          <select class="form-select" id="inp-madein">
+            <option>Vietnam</option><option>China</option><option>Indonesia</option>
+            <option>Bangladesh</option><option>Turkey</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">💰 Regular Price (QR)</label>
+          <input class="form-input" id="inp-reg-price" type="number" placeholder="100"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">🏷️ Last Price (QR)</label>
+          <input class="form-input" id="inp-last-price" type="number" placeholder="80"/>
+        </div>
+      </div>
+      <div class="form-group" id="costPriceGroup" style="display:none">
+        <label class="form-label">💵 Cost Price (QR) — Owner Only</label>
+        <input class="form-input" id="inp-cost-price" type="number" placeholder="60"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Branch</label>
+        <select class="form-select" id="inp-branch"></select>
+      </div>
+      <div class="form-group" id="sizesGroup">
+        <label class="form-label">Available Sizes</label>
+        <div class="sizes-manager" id="sizesManager"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">📸 Raw Pictures</label>
+        <div class="media-gallery" id="gal-raw">
+          <div class="media-thumb upload-thumb" onclick="fakeUpload('gal-raw','🖼️')"><span style="font-size:1.5rem">+</span><span>Add</span></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">🎨 Design Pictures</label>
+        <div class="media-gallery" id="gal-design">
+          <div class="media-thumb upload-thumb" onclick="fakeUpload('gal-design','🎨')"><span style="font-size:1.5rem">+</span><span>Add</span></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">🎥 Videos with Box</label>
+        <div class="media-gallery" id="gal-video">
+          <div class="media-thumb upload-thumb" onclick="fakeUpload('gal-video','🎬')"><span style="font-size:1.5rem">+</span><span>Add</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('addModal')">Cancel</button>
+      <button class="btn btn-gold" onclick="saveProduct()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="detailTitle">Product</div>
+      <button class="modal-close" onclick="closeModal('detailModal')">×</button>
+    </div>
+    <div class="modal-body" id="detailBody"></div>
+    <div class="modal-footer" id="detailFooter"></div>
+  </div>
+</div>
+
+<!-- BRANCH MODAL -->
+<div class="modal-overlay" id="branchModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add Branch</div>
+      <button class="modal-close" onclick="closeModal('branchModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Branch Name</label>
+        <input class="form-input" id="inp-branch-name" placeholder="e.g. Chittagong Branch"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location</label>
+        <input class="form-input" id="inp-branch-loc" placeholder="City / Area"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('branchModal')">Cancel</button>
+      <button class="btn btn-gold" onclick="saveBranch()">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="notif" id="notif"></div>
+
+<!-- SWITCH ROLE MODAL -->
+<div id="switchRoleModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;align-items:flex-end;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:20px;width:100%;max-width:480px;padding:1.5rem;">
+    <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.5rem;text-align:center;">👑 Switch Role</div>
+    <div style="font-size:0.78rem;color:#888;text-align:center;margin-bottom:1.2rem;">Only you can access all roles</div>
+    <div id="switchRoleGrid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:1.2rem;">
+    </div>
+    <button onclick="closeSwitchRole()" style="width:100%;padding:0.9rem;border:1.5px solid #e0e8f5;background:#fff;border-radius:12px;font-family:DM Sans,sans-serif;font-size:0.88rem;cursor:pointer;color:#888;">Cancel</button>
+  </div>
+</div>
+
+<!-- IMAGE VIEWER -->
+<div class="img-viewer" id="imgViewer">
+  <button class="img-viewer-close" onclick="closeViewer()">×</button>
+  <img id="viewerImg" src="" alt=""/>
+  <div class="img-viewer-actions">
+    <a id="viewerDownload" href="" download style="padding:0.7rem 1.5rem;border-radius:20px;font-size:0.88rem;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:600;background:#c9a84c;color:#000;text-decoration:none;">↓ Download</a>
+    <button onclick="closeViewer()" style="padding:0.7rem 1.5rem;border-radius:20px;font-size:0.88rem;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:600;background:rgba(255,255,255,0.15);color:#fff;border:none;">Close</button>
+  </div>
+</div>
+<input type="file" id="hiddenFileInput" accept="image/*,video/*" multiple style="display:none" onchange="handleFileUpload(this)"/>
+
+<script>
+const PASS = {operator:'Opra2121', storekeeper:'Store3232', owner:'Renow2171'};
+let role = null, selRole = null;
+let curGender='', curBrand='', curName='', curCat='shoes', addCat='shoes', selSizes=[];
+
+let D = JSON.parse(localStorage.getItem('nrbt') || 'null') || {
+  branches:[
+    {id:'b1',name:'Home Sports',loc:'Dhaka'},
+    {id:'b2',name:'New Rima',loc:'Dhaka'}
+  ],
+  products:{
+    shoes:[
+      {id:'p1',brand:'Nike',name:'Air Force 1',cat:'Unisex',cost:2000,reg:3500,last:3000,made:'Vietnam',
+       branch:'b1',sizes:['36','37','38','39','40','41'],raw:['🖼️','🖼️'],design:['🎨'],video:['🎬'],
+       stock:{'36':5,'37':3,'38':0,'39':8,'40':2,'41':1},sold:12,soldToday:0,lastDate:''},
+      {id:'p2',brand:'Adidas',name:'Samba',cat:'Women',cost:1500,reg:2800,last:2300,made:'China',
+       branch:'b2',sizes:['36','37','38','39','40'],raw:['🖼️'],design:['🎨','🎨'],video:['🎬','🎬'],
+       stock:{'36':2,'37':0,'38':4,'39':1,'40':3},sold:8,soldToday:0,lastDate:''}
+    ],
+    clothes:[],accessories:[]
+  }
+};
+function save(){localStorage.setItem('nrbt',JSON.stringify(D));}
+
+// LOGIN
+function selectRole(r){
+  selRole=r;
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.role-btn.'+r).classList.add('active');
+}
+function doLogin(){
+  if(!selRole){showNotif('Select a role!','error');return;}
+  const p=document.getElementById('loginPass').value;
+  if(p===PASS[selRole]){
+    role=selRole;
+    originalRole=selRole; // Remember who actually logged in
+    currentViewRole=selRole;
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('app').style.display='block';
+    init();
+  } else {
+    document.getElementById('loginError').style.display='block';
+  }
+}
+function logout(){
+  role=null;selRole=null;originalRole=null;currentViewRole=null;
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('app').style.display='none';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginError').style.display='none';
+  document.getElementById('switchRoleBtn').style.display='none';
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active'));
+}
+
+// INIT
+function init(){
+  const badge=document.getElementById('roleBadge');
+  badge.className='role-badge '+role;
+  badge.textContent=role==='operator'?'👨‍💼 Operator':role==='storekeeper'?'🏪 Storekeeper':'👑 Owner';
+  if(role==='storekeeper'||role==='owner'){
+    ['btnAddShoe','btnAddShoe2','btnAddShoe3','btnAddCloth','btnAddAcc'].forEach(id=>{
+      const el=document.getElementById(id);if(el)el.style.display='inline-flex';
+    });
+  }
+  renderBranchTabs('clothes'); renderBranchTabs('accessories');
+  renderCards('clothes'); renderCards('accessories');
+  if(role==='owner'){
+    renderDash();renderBranchCards();
+    document.getElementById('switchRoleBtn').style.display='inline-block';
+  }
+  if(role==='storekeeper'){
+    document.getElementById('switchRoleBtn').style.display='inline-block';
+  }
+  // operator: switch btn stays hidden
+  goTo('home');
+}
+
+// NAVIGATION
+function goTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  if(page==='home') renderHome();
+  if(page==='shoes') renderGenders();
+  if(page==='shoes-brand') renderBrands();
+  if(page==='shoes-names') renderNames();
+  if(page==='shoes-products') renderShoeCards();
+  if(page==='dashboard') renderDash();
+  if(page==='branches') renderBranchCards();
+}
+
+// HOME FOLDERS
+function renderHome(){
+  const greetMap = {
+    operator: 'Operator Panel',
+    storekeeper: 'Storekeeper Panel',
+    owner: 'Owner Panel'
+  };
+  const emojiMap = {operator:'👨‍💼', storekeeper:'🏪', owner:'👑'};
+  const colorMap = {operator:'#0a3d8f', storekeeper:'#0a5c2e', owner:'#7a4f00'};
+  const greetEl = document.getElementById('home-greeting');
+  greetEl.innerHTML = `<span style="font-size:1.8rem;vertical-align:middle;margin-right:0.5rem">${emojiMap[role]||''}</span><span style="vertical-align:middle;color:${colorMap[role]||'#0a0a1a'};font-size:1.6rem;font-weight:900;">${greetMap[role]||'Welcome'}</span>`;
+  const items=[
+    {id:'shoes',icon:'👟',name:'Shoes',cls:'folder-shoes',count:D.products.shoes.length},
+    {id:'clothes',icon:'👕',name:'Clothes',cls:'folder-clothes',count:D.products.clothes.length},
+    {id:'accessories',icon:'📱',name:'Accessories',cls:'folder-acc',count:D.products.accessories.length},
+  ];
+  if(role==='owner'){
+    items.push({id:'dashboard',icon:'📊',name:'Dashboard',cls:'folder-owner',count:null});
+    items.push({id:'branches',icon:'🏪',name:'Branches',cls:'folder-owner',count:null});
+  }
+  document.getElementById('home-folders').innerHTML=items.map(f=>`
+    <div class="folder-card ${f.cls}" onclick="goTo('${f.id}')">
+      <span class="f-icon">${f.icon}</span>
+      <div class="f-name">${f.name}</div>
+      ${f.count!==null?`<div class="f-count">${f.count} items</div>`:'<div class="f-count">Open →</div>'}
+    </div>`).join('');
+}
+
+// SHOES L1: Gender folders
+function renderGenders(){
+  const genders=[
+    {id:'Women',icon:'👩',cls:'folder-women',label:'Women',sizes:'36 — 41'},
+    {id:'Men',icon:'👨',cls:'folder-men',label:'Men',sizes:'40 — 47'},
+    {id:'Unisex',icon:'🔄',cls:'folder-unisex',label:'Unisex',sizes:'36 — 47'},
+  ];
+  document.getElementById('shoes-gender').innerHTML=genders.map(g=>{
+    const cnt=D.products.shoes.filter(p=>p.cat===g.id).length;
+    return `<div class="folder-card ${g.cls}" onclick="selGender('${g.id}','${g.icon}')">
+      <span class="f-icon">${g.icon}</span>
+      <div class="f-name">${g.label}</div>
+      <div style="font-size:0.72rem;color:#888;margin-bottom:0.3rem">📏 Size: ${g.sizes}</div>
+      <div class="f-count">${cnt} items</div>
+    </div>`;
+  }).join('');
+}
+function selGender(g,icon){
+  curGender=g;
+  document.getElementById('title-brand').textContent=icon+' '+g+' — Brands';
+  goTo('shoes-brand');
+}
+
+// SHOES L2: Brand folders
+function renderBrands(){
+  const prods=D.products.shoes.filter(p=>p.cat===curGender);
+  const brands=[...new Set(prods.map(p=>p.brand))];
+  const emap={Nike:'✔️',Adidas:'🔵',QC:'⭐',Puma:'🐆',Vans:'🛹',Reebok:'🔴',Converse:'⭐'};
+  document.getElementById('shoes-brands').innerHTML=brands.length
+    ? brands.map(b=>{
+        const cnt=prods.filter(p=>p.brand===b).length;
+        return `<div class="folder-card folder-men" onclick="selBrand('${b}')">
+          <span class="f-icon">${emap[b]||'👟'}</span>
+          <div class="f-name">${b}</div>
+          <div class="f-count">${cnt} models</div>
+        </div>`;
+      }).join('')
+    : '<div class="empty-state"><div class="icon">📦</div><p>No products yet</p></div>';
+}
+function selBrand(b){
+  curBrand=b;
+  document.getElementById('title-names').textContent='👟 '+b+' — '+curGender;
+  goTo('shoes-names');
+}
+
+// SHOES L3: Name folders
+function renderNames(){
+  const prods=D.products.shoes.filter(p=>p.cat===curGender&&p.brand===curBrand);
+  const names=[...new Set(prods.map(p=>p.name))];
+  document.getElementById('shoes-names').innerHTML=names.length
+    ? names.map(n=>{
+        const p=prods.find(x=>x.name===n);
+        const avail=p&&p.sizes?p.sizes.filter(s=>(p.stock[s]||0)>0).length:0;
+        const total=p&&p.sizes?p.sizes.length:0;
+        const firstImg = p&&p.raw.length?p.raw[0]:null;
+        const isBase64 = firstImg && firstImg.startsWith('data:');
+        const imgHtml = isBase64
+          ? `<img src="${firstImg}" style="width:80px;height:80px;object-fit:cover;border-radius:12px;margin-bottom:0.6rem;display:block;margin-left:auto;margin-right:auto;"/>`
+          : `<span class="f-icon">👟</span>`;
+        return `<div class="folder-card" onclick="selName('${n.replace(/'/g,"\'")}')">
+          ${imgHtml}
+          <div class="f-name" style="font-size:0.9rem">${n}</div>
+          <div class="f-count">${avail}/${total} sizes</div>
+        </div>`;
+      }).join('')
+    : '<div class="empty-state"><div class="icon">📦</div><p>No models yet</p></div>';
+}
+function selName(n){
+  curName=n;
+  document.getElementById('title-products').textContent=curBrand+' '+n;
+  goTo('shoes-products');
+}
+
+// SHOES L4: Product cards
+function renderShoeCards(){
+  const prods=D.products.shoes.filter(p=>p.cat===curGender&&p.brand===curBrand&&p.name===curName);
+  renderBranchTabs('shoes');
+  document.getElementById('shoes-cards').innerHTML=prods.length
+    ? prods.map(p=>productCardHTML('shoes',p)).join('')
+    : '<div class="empty-state"><div class="icon">📦</div><p>No products</p></div>';
+}
+
+// GENERAL CARDS
+function renderCards(cat){
+  const prods=D.products[cat];
+  document.getElementById(cat+'-cards').innerHTML=prods.length
+    ? prods.map(p=>productCardHTML(cat,p)).join('')
+    : '<div class="empty-state"><div class="icon">📦</div><p>No products yet</p></div>';
+}
+
+function productCardHTML(cat,p){
+  const stock=p.sizes?p.sizes.reduce((s,sz)=>s+(p.stock[sz]||0),0):0;
+  const sizesHtml=(role==='operator'||role==='owner')&&p.sizes
+    ?`<div class="sizes-row">${p.sizes.map(sz=>`<span class="size-chip ${(p.stock[sz]||0)>0?'size-avail':'size-unavail'}">${sz}</span>`).join('')}</div>`:'';
+  const stockInfo=(role==='storekeeper'||role==='owner')
+    ?`<div style="font-size:0.75rem;opacity:0.6;margin-bottom:0.4rem">Stock: ${stock} pcs</div>`:'';
+  const firstImg = p.raw.length ? p.raw[0] : null;
+  const cardImgHtml = firstImg && firstImg.startsWith('data:')
+    ? `<img src="${firstImg}" style="width:100%;height:100%;object-fit:cover;"/>`
+    : `<span style="font-size:3.5rem">👟</span>`;
+  return `<div class="card" onclick="openDetail('${cat}','${p.id}')">
+    <div class="card-img">${cardImgHtml}<div class="card-img-count">📸${p.raw.length}</div></div>
+    <div class="card-body">
+      <div class="card-brand">${p.brand} ${p.made?`<span style="font-size:0.6rem;opacity:0.6">🌍${p.made}</span>`:''}</div>
+      <div class="card-name">${p.name}</div>
+      ${sizesHtml}${stockInfo}
+      <div class="card-footer">
+        <div><div class="card-price">QR ${p.reg}</div><div style="font-size:0.7rem;color:#e07070">Last: QR ${p.last}</div></div>
+        <button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openDetail('${cat}','${p.id}')">View</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// BRANCH TABS
+function renderBranchTabs(cat){
+  const el=document.getElementById(cat+'-branch-tabs');
+  if(!el||role==='operator'){if(el)el.innerHTML='';return;}
+  el.innerHTML=`<button class="branch-tab active" onclick="filterBranch('${cat}','All',this)">All</button>`
+    +D.branches.map(b=>`<button class="branch-tab" onclick="filterBranch('${cat}','${b.id}',this)">${b.name}</button>`).join('');
+}
+function filterBranch(cat,bid,btn){
+  btn.closest('.branch-tabs').querySelectorAll('.branch-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(cat==='shoes'){renderShoeCards();}
+  else renderCards(cat);
+}
+
+// DETAIL
+function openDetail(cat,id){
+  const p=D.products[cat].find(x=>x.id===id);
+  if(!p)return;
+  document.getElementById('detailTitle').textContent=p.brand+' '+p.name;
+  let html='';
+  if(role==='operator'||role==='owner'){
+    html+=`<div style="margin-bottom:1rem">
+      <div style="font-size:0.7rem;color:#888;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem">📸 Raw Pictures</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:0.5rem">
+        ${p.raw.map(m=>m.startsWith('data:')?
+          `<div onclick="openViewer('${m}')" style="height:90px;border-radius:10px;overflow:hidden;border:2px solid #e0e8f0;cursor:pointer;position:relative;">
+            <img src="${m}" style="width:100%;height:100%;object-fit:cover"/>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:0.2s;display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:1.5rem;opacity:0">🔍</span>
+            </div>
+          </div>`:
+          `<div style="height:90px;background:#f5f8ff;border:1px solid #e0e8f0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2.5rem">${m}</div>`
+        ).join('')}
+      </div>
+    </div>
+    <div style="margin-bottom:1rem">
+      <div style="font-size:0.7rem;color:#888;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem">🎨 Design Pictures</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:0.5rem">
+        ${p.design.map(m=>m.startsWith('data:')?
+          `<div onclick="openViewer('${m}')" style="height:90px;border-radius:10px;overflow:hidden;border:2px solid #e0e8f0;cursor:pointer;">
+            <img src="${m}" style="width:100%;height:100%;object-fit:cover"/>
+          </div>`:
+          `<div style="height:90px;background:#f5f8ff;border:1px solid #e0e8f0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2.5rem">${m}</div>`
+        ).join('')}
+      </div>
+    </div>
+    <div style="margin-bottom:1rem">
+      <div style="font-size:0.7rem;color:#888;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem">🎥 Videos with Box</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:0.5rem">
+        ${p.video.map(m=>m.startsWith('data:')?
+          `<div style="height:90px;border-radius:10px;overflow:hidden;border:2px solid #e0e8f0;">
+            <video src="${m}" style="width:100%;height:100%;object-fit:cover" controls playsinline></video>
+          </div>`:
+          `<div style="height:90px;background:#f5f8ff;border:1px solid #e0e8f0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2.5rem">${m}</div>`
+        ).join('')}
+      </div>
+    </div>`;
+    if(p.sizes){
+      html+=`<div style="margin-bottom:1rem"><div style="font-size:0.7rem;opacity:0.5;text-transform:uppercase;margin-bottom:0.5rem">Sizes</div>
+      <div class="sizes-row">${p.sizes.map(sz=>`<span class="size-chip ${(p.stock[sz]||0)>0?'size-avail':'size-unavail'}">${sz}${role==='owner'?` (${p.stock[sz]||0})`:''}</span>`).join('')}</div></div>`;
+    }
+    html+=`<div style="display:flex;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap">
+      <div style="color:var(--gold);font-weight:600">💰 QR ${p.reg}</div>
+      <div style="color:#e07070;font-weight:600">🏷️ QR ${p.last}</div>
+      <div style="opacity:0.6;font-size:0.85rem">🌍 ${p.made||'—'}</div>
+    </div>`;
+  }
+  if(role==='storekeeper'||role==='owner'){
+    if(p.sizes){
+      html+=`<div style="font-size:0.7rem;color:#888;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem">📦 Stock Management</div>
+      <table class="stock-table"><tr><th>Size</th><th>Stock</th><th>Add / Remove</th></tr>
+      ${p.sizes.map(sz=>`<tr>
+        <td><strong>${sz}</strong></td>
+        <td><input class="stock-input" id="stk-${p.id}-${sz}" value="${p.stock[sz]||0}" type="number" min="0"/></td>
+        <td style="display:flex;gap:0.3rem">
+          <button class="plus-btn" onclick="chgStock('${cat}','${p.id}','${sz}',1)">+</button>
+          <button class="minus-btn" onclick="chgStock('${cat}','${p.id}','${sz}',-1)">−</button>
+        </td>
+      </tr>`).join('')}</table>
+
+      <div style="margin-top:1.2rem;padding:1rem;background:#fff8f0;border:1.5px solid #f0c080;border-radius:12px;">
+        <div style="font-size:0.75rem;color:#a07820;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem;font-weight:600;">🛒 Mark as Sold</div>
+        <div style="display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;">
+          <select id="sold-size-${p.id}" style="flex:1;min-width:80px;background:#fff;border:1.5px solid #e0c080;color:#333;padding:0.6rem 0.8rem;border-radius:8px;font-family:DM Sans,sans-serif;font-size:0.88rem;outline:none;">
+            ${p.sizes.map(sz=>`<option value="${sz}">Size ${sz} (Stock: ${p.stock[sz]||0})</option>`).join('')}
+          </select>
+          <input id="sold-qty-${p.id}" type="number" min="1" value="1" 
+            style="width:65px;background:#fff;border:1.5px solid #e0c080;color:#333;padding:0.6rem;border-radius:8px;font-family:DM Sans,sans-serif;font-size:0.88rem;text-align:center;outline:none;"/>
+          <button onclick="markSold('${cat}','${p.id}')" 
+            style="background:linear-gradient(135deg,#e8a020,#c9a84c);color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;white-space:nowrap;">
+            ✅ Sold
+          </button>
+        </div>
+        <div id="sold-msg-${p.id}" style="font-size:0.78rem;color:#2d8a4e;margin-top:0.5rem;display:none;"></div>
+      </div>`;
+    }
+  }
+  if(role==='owner'){
+    const totStock=p.sizes?p.sizes.reduce((s,sz)=>s+(p.stock[sz]||0),0):0;
+    const today=new Date().toDateString();
+    const todaySold=p.lastDate===today?(p.soldToday||0):0;
+    html+=`<div style="margin-top:1rem;padding:1rem;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:8px">
+      <div style="font-size:0.7rem;opacity:0.5;text-transform:uppercase;margin-bottom:0.8rem">👑 Owner View</div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:0.8rem">
+        <div><div style="font-size:1.2rem;color:var(--gold)">${totStock}</div><div style="font-size:0.7rem;opacity:0.5">Stock</div></div>
+        <div><div style="font-size:1.2rem;color:#5dc87e">${p.sold||0}</div><div style="font-size:0.7rem;opacity:0.5">Total Sold</div></div>
+        <div><div style="font-size:1.2rem;color:#f0a500">${todaySold}</div><div style="font-size:0.7rem;opacity:0.5">Today Sold</div></div>
+      </div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <div style="color:#e07070">💵 Cost: QR ${p.cost||0}</div>
+        <div style="color:#5dc87e">📈 Profit/pc: QR ${(p.last||0)-(p.cost||0)}</div>
+      </div>
+      <div style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid rgba(201,168,76,0.2);display:flex;gap:1.5rem;flex-wrap:wrap">
+        <div style="color:var(--gold)">💰 Revenue: QR ${(p.sold||0)*(p.last||0)}</div>
+        <div style="color:#5dc87e">🏆 Profit: QR ${(p.sold||0)*((p.last||0)-(p.cost||0))}</div>
+        <div style="color:#f0a500">📅 Today: QR ${todaySold*((p.last||0)-(p.cost||0))}</div>
+      </div>
+    </div>`;
+  }
+  document.getElementById('detailBody').innerHTML=html;
+  let foot=`<button class="btn btn-outline" onclick="closeModal('detailModal')">Close</button>`;
+  if(role==='storekeeper'||role==='owner'){
+    foot+=`<button class="btn btn-red btn-sm" onclick="delProduct('${cat}','${id}')">🗑 Delete</button>`;
+    foot+=`<button class="btn btn-gold btn-sm" onclick="openEdit('${cat}','${id}')">✏️ Edit</button>`;
+  }
+  document.getElementById('detailFooter').innerHTML=foot;
+  openModal('detailModal');
+}
+
+function markSold(cat,id){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  const sz=document.getElementById('sold-size-'+id).value;
+  const qty=parseInt(document.getElementById('sold-qty-'+id).value)||1;
+  const available=p.stock[sz]||0;
+  if(available<qty){showNotif('Not enough stock! Available: '+available,'error');return;}
+  p.stock[sz]=available-qty;
+  p.sold=(p.sold||0)+qty;
+  const today=new Date().toDateString();
+  if(p.lastDate!==today){p.soldToday=0;p.lastDate=today;}
+  p.soldToday=(p.soldToday||0)+qty;
+  save();
+  // Update stock input
+  const inp=document.getElementById('stk-'+id+'-'+sz);
+  if(inp)inp.value=p.stock[sz];
+  // Update size select
+  const sel=document.getElementById('sold-size-'+id);
+  if(sel){
+    Array.from(sel.options).forEach(o=>{
+      const s=o.value;
+      o.text=`Size ${s} (Stock: ${p.stock[s]||0})`;
+    });
+  }
+  // Show success msg
+  const msg=document.getElementById('sold-msg-'+id);
+  if(msg){msg.textContent=`✅ ${qty} pcs of Size ${sz} marked as sold!`;msg.style.display='block';}
+  if(cat==='shoes')renderShoeCards();else renderCards(cat);
+  showNotif(`Sold! ${qty} x Size ${sz}`);
+}
+
+function chgStock(cat,id,sz,d){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  p.stock[sz]=Math.max(0,(p.stock[sz]||0)+d);
+  if(d<0){
+    p.sold=(p.sold||0)+1;
+    const today=new Date().toDateString();
+    if(p.lastDate!==today){p.soldToday=0;p.lastDate=today;}
+    p.soldToday=(p.soldToday||0)+1;
+  }
+  const inp=document.getElementById(`stk-${id}-${sz}`);
+  if(inp)inp.value=p.stock[sz];
+  save();
+  if(cat==='shoes')renderShoeCards();else renderCards(cat);
+  showNotif(d>0?'Stock added!':'Sold -1');
+}
+
+function delProduct(cat,id){
+  if(!confirm('Delete this product?'))return;
+  D.products[cat]=D.products[cat].filter(p=>p.id!==id);
+  save();closeModal('detailModal');
+  if(cat==='shoes')renderShoeCards();else renderCards(cat);
+  showNotif('Deleted!');
+}
+
+// EDIT
+const ALL_SIZES=['35','36','37','38','39','40','41','42','43','44','45','46','47'];
+
+// Image Upload System - works locally
+let uploadTarget = {galId:'', type:'', pid:'', cat:''};
+
+function triggerUpload(galId, type, pid, cat){
+  uploadTarget = {galId, type, pid, cat};
+  // Create a real file input and click it immediately
+  const inp = document.createElement('input');
+  inp.type = 'file';
+  inp.accept = type==='video' ? 'video/*' : 'image/*,video/*';
+  inp.multiple = true;
+  inp.style.display = 'none';
+  inp.onchange = function(){ handleFileUpload(this); document.body.removeChild(inp); };
+  document.body.appendChild(inp);
+  inp.click();
+}
+
+function handleFileUpload(input){
+  const files = Array.from(input.files);
+  if(!files.length) return;
+  const {galId, type, pid, cat} = uploadTarget;
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function(e){
+      addMediaToProduct(galId, type, pid, cat, e.target.result);
+    };
+    reader.readAsDataURL(file);
+  });
+  document.getElementById('uploadOverlay').remove();
+}
+
+function addMediaToProduct(galId, type, pid, cat, src){
+  const p = D.products[cat].find(x=>x.id===pid);
+  if(!p) return;
+  p[type].push(src);
+  save();
+  const gal = document.getElementById(galId);
+  if(!gal) return;
+  const addBtn = gal.lastElementChild;
+  const idx = p[type].length - 1;
+  const div = document.createElement('div');
+  const isVideo = src.includes('video') || src.endsWith('.mp4') || src.endsWith('.mov');
+  div.style.cssText='height:80px;border-radius:8px;overflow:hidden;position:relative;border:1px solid #dde5f5;background:#f5f8ff;';
+  if(isVideo){
+    div.innerHTML=`<video src="${src}" style="width:100%;height:100%;object-fit:cover"></video>
+      <button onclick="removeEditMedia('${galId}',${idx},'${type}','${pid}','${cat}')" style="position:absolute;top:3px;right:3px;background:#e05555;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:0.65rem;cursor:pointer;font-weight:bold;">×</button>`;
+  } else {
+    div.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover"/>
+      <button onclick="removeEditMedia('${galId}',${idx},'${type}','${pid}','${cat}')" style="position:absolute;top:3px;right:3px;background:#e05555;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:0.65rem;cursor:pointer;font-weight:bold;">×</button>`;
+  }
+  gal.insertBefore(div, addBtn);
+  showNotif('Added!');
+}
+let editSelSizes=[];
+
+function openEdit(cat,id){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  closeModal('detailModal');
+  editSelSizes=p.sizes?[...p.sizes]:[];
+  const ov=document.createElement('div');
+  ov.className='modal-overlay open';ov.id='editModal';
+  ov.innerHTML=`<div class="modal">
+    <div class="modal-header"><div class="modal-title">✏️ Edit Product</div>
+      <button class="modal-close" onclick="document.getElementById('editModal').remove()">×</button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Brand</label><input class="form-input" id="e-brand" value="${p.brand}"/></div>
+        <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="e-name" value="${p.name}"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Made In</label>
+          <select class="form-select" id="e-made">${['Vietnam','China','Indonesia','Bangladesh','Turkey','Other'].map(m=>`<option ${p.made===m?'selected':''}>${m}</option>`).join('')}</select>
+        </div>
+        <div class="form-group"><label class="form-label">Category</label>
+          <select class="form-select" id="e-cat">${['Women','Men','Unisex'].map(c=>`<option ${p.cat===c?'selected':''}>${c}</option>`).join('')}</select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">💰 Regular QR</label><input class="form-input" id="e-reg" type="number" value="${p.reg||0}"/></div>
+        <div class="form-group"><label class="form-label">🏷️ Last QR</label><input class="form-input" id="e-last" type="number" value="${p.last||0}"/></div>
+      </div>
+      ${role==='owner'?`<div class="form-group"><label class="form-label">💵 Cost QR — Owner</label><input class="form-input" id="e-cost" type="number" value="${p.cost||0}"/></div>`:''}
+      ${cat==='shoes'?`<div class="form-group">
+        <label class="form-label">📏 Sizes — tap to add/remove</label>
+        <div id="edit-sizes-wrap" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+          ${ALL_SIZES.map(s=>`<button type="button" 
+            id="esz-${s}"
+            onclick="togEditSize('${s}')"
+            style="padding:0.35rem 0.75rem;border-radius:6px;font-size:0.8rem;cursor:pointer;
+              font-family:'DM Sans',sans-serif;transition:all 0.2s;
+              ${editSelSizes.includes(s)?
+                'background:#c9a84c;color:#000;border:2px solid #c9a84c;font-weight:700;':
+                'background:#f0f4ff;color:#888;border:2px solid #e0e8f0;'}"
+          >${s}</button>`).join('')}
+        </div>
+      </div>`:''}
+
+      <div class="form-group">
+        <label class="form-label">📸 Raw Pictures</label>
+        <div id="e-gal-raw" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(75px,1fr));gap:0.5rem;margin-top:0.4rem;">
+          ${p.raw.map((m,i)=>m.startsWith('data:')?
+            `<div style="height:80px;border-radius:8px;overflow:hidden;position:relative;border:1px solid #dde5f5;">
+              <img src="${m}" style="width:100%;height:100%;object-fit:cover"/>
+              <button onclick="removeEditMedia('e-gal-raw',${i},'raw','${id}','${cat}')" style="position:absolute;top:3px;right:3px;background:#e05555;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:0.65rem;cursor:pointer;font-weight:bold;">×</button>
+            </div>`:
+            `<div style="height:80px;background:#f5f8ff;border:1px solid #dde5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;">
+              ${m}
+              <button onclick="removeEditMedia('e-gal-raw',${i},'raw','${id}','${cat}')" style="position:absolute;top:3px;right:3px;background:#e05555;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:0.65rem;cursor:pointer;font-weight:bold;">×</button>
+            </div>`
+          ).join('')}
+          <div onclick="addEditMedia('e-gal-raw','🖼️','raw','${id}','${cat}')" style="height:80px;background:#f5f8ff;border:1.5px dashed #c0cce8;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;color:#aaa;gap:0.2rem;">
+            <span>📷</span><span style="font-size:0.7rem">Add Photo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">🎨 Design Pictures</label>
+        <div id="e-gal-design" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(75px,1fr));gap:0.5rem;margin-top:0.4rem;">
+          ${p.design.map((m,i)=>m.startsWith('data:')?
+            `<div style="height:80px;border-radius:8px;overflow:hidden;position:relative;border:1px solid #dde5f5;">
+              <img src="${m}" style="width:100%;height:100%;object-fit:cover"/>
+              <button onclick="removeEditMedia('e-gal-design',${i},'design','${id}','${cat}')" style="position:absolute;top:3px;right:3px;background:#e05555;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:0.65rem;cursor:pointer;font-weight:bold;">×</button>
+            </div>`:
+            `<div style="height:80px;background:#f5f8ff;border:1px solid #dde5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;">
+              ${m}
+              <button onclick="removeEditMedia('e-gal-design',${i},'design','${id}','${cat}')" style="position:absolute;top:3px;right:3px;background:#e05555;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:0.65rem;cursor:pointer;font-weight:bold;">×</button>
+            </div>`
+          ).join('')}
+          <div onclick="addEditMedia('e-gal-design','🎨','design','${id}','${cat}')" style="height:80px;background:#f5f8ff;border:1.5px dashed #c0cce8;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;color:#aaa;gap:0.2rem;">
+            <span>🖼️</span><span style="font-size:0.7rem">Add Photo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">🎥 Videos with Box</label>
+        <div id="e-gal-video" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(75px,1fr));gap:0.5rem;margin-top:0.4rem;">
+          ${p.video.map((m,i)=>m.startsWith('data:')?
+            `<div style="height:80px;border-radius:8px;overflow:hidden;position:relative;border:1px solid #dde5f5;">
+              <video src="${m}" style="width:100%;height:100%;object-fit:cover"></video>
+              <button onclick="removeEditMedia('e-gal-video',${i},'video','${id}','${cat}')" style="position:absolute;top:3px;right:3px;background:#e05555;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:0.65rem;cursor:pointer;font-weight:bold;">×</button>
+            </div>`:
+            `<div style="height:80px;background:#f5f8ff;border:1px solid #dde5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;">
+              ${m}
+              <button onclick="removeEditMedia('e-gal-video',${i},'video','${id}','${cat}')" style="position:absolute;top:3px;right:3px;background:#e05555;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:0.65rem;cursor:pointer;font-weight:bold;">×</button>
+            </div>`
+          ).join('')}
+          <div onclick="addEditMedia('e-gal-video','🎬','video','${id}','${cat}')" style="height:80px;background:#f5f8ff;border:1.5px dashed #c0cce8;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;color:#aaa;gap:0.2rem;">
+            <span>🎬</span><span style="font-size:0.7rem">Add Video</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="document.getElementById('editModal').remove()">Cancel</button>
+      <button class="btn btn-gold" onclick="saveEdit('${cat}','${id}')">Save</button>
+    </div>
+  </div>`;
+  document.body.appendChild(ov);
+}
+
+function addEditMedia(galId, emoji, type, pid, cat){
+  triggerUpload(galId, type, pid, cat);
+}
+
+function removeEditMedia(galId, idx, type, pid, cat){
+  const p=D.products[cat].find(x=>x.id===pid);if(!p)return;
+  p[type].splice(idx,1);
+  save();
+  const gal=document.getElementById(galId);
+  if(!gal)return;
+  const items=Array.from(gal.children).slice(0,-1);
+  if(items[idx])items[idx].remove();
+  showNotif('Removed!');
+}
+
+function togEditSize(sz){
+  if(editSelSizes.includes(sz)){
+    editSelSizes=editSelSizes.filter(s=>s!==sz);
+    document.getElementById('esz-'+sz).style.cssText='padding:0.35rem 0.75rem;border-radius:6px;font-size:0.8rem;cursor:pointer;font-family:DM Sans,sans-serif;transition:all 0.2s;background:#f0f4ff;color:#888;border:2px solid #e0e8f0;';
+  } else {
+    editSelSizes.push(sz);
+    editSelSizes.sort((a,b)=>Number(a)-Number(b));
+    document.getElementById('esz-'+sz).style.cssText='padding:0.35rem 0.75rem;border-radius:6px;font-size:0.8rem;cursor:pointer;font-family:DM Sans,sans-serif;transition:all 0.2s;background:#c9a84c;color:#000;border:2px solid #c9a84c;font-weight:700;';
+  }
+}
+function saveEdit(cat,id){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  p.brand=document.getElementById('e-brand').value||p.brand;
+  p.name=document.getElementById('e-name').value||p.name;
+  p.made=document.getElementById('e-made').value;
+  p.cat=document.getElementById('e-cat').value;
+  p.reg=Number(document.getElementById('e-reg').value)||p.reg;
+  p.last=Number(document.getElementById('e-last').value)||p.last;
+  if(role==='owner'){const c=document.getElementById('e-cost');if(c)p.cost=Number(c.value)||p.cost;}
+  // Save sizes
+  if(cat==='shoes' && editSelSizes.length>0){
+    p.sizes=editSelSizes;
+    // Keep existing stock, add 0 for new sizes
+    editSelSizes.forEach(s=>{if(p.stock[s]===undefined)p.stock[s]=0;});
+  }
+  save();document.getElementById('editModal').remove();
+  if(cat==='shoes')renderShoeCards();else renderCards(cat);
+  showNotif('Updated!');
+}
+
+// ADD PRODUCT
+const SIZES=['35','36','37','38','39','40','41','42','43','44','45'];
+function openAdd(cat){
+  addCat=cat;
+  document.getElementById('addModalTitle').textContent='Add '+cat.charAt(0).toUpperCase()+cat.slice(1,-1);
+  document.getElementById('inp-branch').innerHTML=D.branches.map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
+  selSizes=[];
+  if(cat==='shoes'){
+    document.getElementById('sizesGroup').style.display='block';
+    document.getElementById('sizesManager').innerHTML=SIZES.map(s=>`<button class="size-toggle" onclick="togSz('${s}',this)">${s}</button>`).join('');
+  } else document.getElementById('sizesGroup').style.display='none';
+  document.getElementById('costPriceGroup').style.display=role==='owner'?'block':'none';
+  ['inp-brand','inp-name','inp-reg-price','inp-last-price','inp-cost-price'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['gal-raw','gal-design','gal-video'].forEach(id=>{
+    document.getElementById(id).innerHTML=`<div class="media-thumb upload-thumb" onclick="fakeUpload('${id}','${id==='gal-video'?'🎬':'🖼️'}')"><span style="font-size:1.5rem">+</span><span>Add</span></div>`;
+  });
+  openModal('addModal');
+}
+function togSz(sz,btn){
+  if(selSizes.includes(sz)){selSizes=selSizes.filter(s=>s!==sz);btn.classList.remove('selected');}
+  else{selSizes.push(sz);btn.classList.add('selected');}
+}
+function fakeUpload(gid,emoji){
+  const g=document.getElementById(gid);
+  const up=g.querySelector('.upload-thumb');
+  const t=document.createElement('div');t.className='media-thumb';
+  t.innerHTML=`${emoji}<button class="del-media" onclick="this.parentElement.remove()">×</button>`;
+  g.insertBefore(t,up);
+}
+function saveProduct(){
+  const brand=document.getElementById('inp-brand').value.trim();
+  const name=document.getElementById('inp-name').value.trim();
+  const reg=document.getElementById('inp-reg-price').value;
+  const last=document.getElementById('inp-last-price').value;
+  const cost=document.getElementById('inp-cost-price').value||0;
+  const made=document.getElementById('inp-madein').value;
+  const cat2=document.getElementById('inp-cat').value;
+  const branch=document.getElementById('inp-branch').value;
+  if(!brand||!name||!reg||!last){showNotif('Fill all fields!','error');return;}
+  const rc=document.getElementById('gal-raw').querySelectorAll('.media-thumb:not(.upload-thumb)').length;
+  const dc=document.getElementById('gal-design').querySelectorAll('.media-thumb:not(.upload-thumb)').length;
+  const vc=document.getElementById('gal-video').querySelectorAll('.media-thumb:not(.upload-thumb)').length;
+  const stk={};selSizes.forEach(s=>stk[s]=0);
+  D.products[addCat].push({
+    id:'p'+Date.now(),brand,name,cat:cat2,cost:Number(cost),reg:Number(reg),last:Number(last),
+    made,branch,sizes:addCat==='shoes'?selSizes:undefined,
+    raw:Array(rc).fill('🖼️'),design:Array(dc).fill('🎨'),video:Array(vc).fill('🎬'),
+    stock:stk,sold:0,soldToday:0,lastDate:''
+  });
+  save();closeModal('addModal');
+  if(addCat==='shoes'){renderNames();renderShoeCards();}
+  else renderCards(addCat);
+  showNotif('Product added!');
+}
+
+// BRANCHES
+function openAddBranch(){
+  document.getElementById('inp-branch-name').value='';
+  document.getElementById('inp-branch-loc').value='';
+  openModal('branchModal');
+}
+function saveBranch(){
+  const name=document.getElementById('inp-branch-name').value.trim();
+  const loc=document.getElementById('inp-branch-loc').value.trim();
+  if(!name){showNotif('Enter name','error');return;}
+  D.branches.push({id:'b'+Date.now(),name,loc});
+  save();closeModal('branchModal');renderBranchCards();
+  renderBranchTabs('shoes');renderBranchTabs('clothes');renderBranchTabs('accessories');
+  showNotif('Branch added!');
+}
+function renderBranchCards(){
+  document.getElementById('branches-cards').innerHTML=D.branches.map(b=>`
+    <div class="card"><div class="card-body" style="padding:1.2rem">
+      <div style="font-size:2rem;margin-bottom:0.6rem">🏪</div>
+      <div class="card-name">${b.name}</div>
+      <div style="font-size:0.8rem;opacity:0.5;margin-top:0.3rem">📍 ${b.loc||'—'}</div>
+    </div></div>`).join('');
+}
+
+// DASHBOARD
+function renderDash(){
+  const all=[...D.products.shoes,...D.products.clothes,...D.products.accessories];
+  const totStock=all.reduce((s,p)=>s+(p.sizes?p.sizes.reduce((a,sz)=>a+(p.stock[sz]||0),0):0),0);
+  const totSold=all.reduce((s,p)=>s+(p.sold||0),0);
+  const today=new Date().toDateString();
+  const todaySold=all.reduce((s,p)=>s+((p.lastDate===today?p.soldToday:0)||0),0);
+  const totProfit=all.reduce((s,p)=>s+((p.sold||0)*((p.last||0)-(p.cost||0))),0);
+  const todayProfit=all.reduce((s,p)=>{const ts=(p.lastDate===today?p.soldToday:0)||0;return s+(ts*((p.last||0)-(p.cost||0)));},0);
+  document.getElementById('dash-stats').innerHTML=`
+    <div class="stat-card"><div class="stat-num">${D.products.shoes.length}</div><div class="stat-label">Shoes</div></div>
+    <div class="stat-card"><div class="stat-num">${D.products.clothes.length}</div><div class="stat-label">Clothes</div></div>
+    <div class="stat-card"><div class="stat-num">${totStock}</div><div class="stat-label">Total Stock</div></div>
+    <div class="stat-card"><div class="stat-num">${totSold}</div><div class="stat-label">Total Sold</div></div>
+    <div class="stat-card" style="border-color:rgba(240,165,0,0.4)"><div class="stat-num" style="color:#f0a500">${todaySold}</div><div class="stat-label">Today Sold</div></div>
+    <div class="stat-card" style="border-color:rgba(45,138,78,0.4)"><div class="stat-num" style="color:#5dc87e">QR ${totProfit}</div><div class="stat-label">Total Profit</div></div>
+    <div class="stat-card" style="border-color:rgba(45,138,78,0.4)"><div class="stat-num" style="color:#5dc87e">QR ${todayProfit}</div><div class="stat-label">Today Profit</div></div>
+  `;
+}
+
+// MODAL
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(el=>{
+  el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+});
+
+// NOTIF
+function openViewer(src){
+  document.getElementById('viewerImg').src = src;
+  document.getElementById('viewerDownload').href = src;
+  document.getElementById('imgViewer').classList.add('open');
+}
+function closeViewer(){
+  document.getElementById('imgViewer').classList.remove('open');
+  document.getElementById('viewerImg').src = '';
+}
+
+// Switch Role (Owner only)
+let originalRole = null; // The role used to LOGIN (never changes)
+let currentViewRole = null; // The current VIEW role (can change)
+
+function openSwitchRole(){
+  const modal = document.getElementById('switchRoleModal');
+  const grid = document.getElementById('switchRoleGrid');
+
+  // Build options based on ORIGINAL login role
+  const roleCard = (r, icon, label, color, bg, border) =>
+    `<div onclick="switchToRole('${r}')" style="padding:1.2rem 0.5rem;background:${bg};border:2px solid ${border};border-radius:14px;text-align:center;cursor:pointer;${role===r?'box-shadow:0 4px 12px rgba(0,0,0,0.15);transform:scale(1.03)':''}">
+      <div style="font-size:2rem">${icon}</div>
+      <div style="font-size:0.78rem;font-weight:600;color:${color};margin-top:0.3rem">${label}</div>
+      ${role===r?'<div style="font-size:0.65rem;color:'+color+';opacity:0.7">Current</div>':''}
+    </div>`;
+
+  if(originalRole === 'storekeeper'){
+    // Storekeeper: can switch between Operator and Storekeeper
+    grid.innerHTML =
+      roleCard('operator','👨‍💼','Operator','#1e6cb5','#f0f5ff','#1e6cb5') +
+      roleCard('storekeeper','🏪','Storekeeper','#2d8a4e','#f0fff5','#2d8a4e');
+    grid.style.gridTemplateColumns = '1fr 1fr';
+
+  } else if(originalRole === 'owner'){
+    // Owner: can switch to all 3
+    grid.innerHTML =
+      roleCard('operator','👨‍💼','Operator','#1e6cb5','#f0f5ff','#1e6cb5') +
+      roleCard('storekeeper','🏪','Storekeeper','#2d8a4e','#f0fff5','#2d8a4e') +
+      roleCard('owner','👑','Owner','#a07820','#fffbf0','#c9a84c');
+    grid.style.gridTemplateColumns = '1fr 1fr 1fr';
+  }
+
+  modal.style.display='flex';
+}
+function closeSwitchRole(){
+  document.getElementById('switchRoleModal').style.display='none';
+}
+function switchToRole(newRole){
+  closeSwitchRole();
+  role = newRole;
+  currentViewRole = newRole;
+
+  // Update badge
+  const badge = document.getElementById('roleBadge');
+  badge.className = 'role-badge ' + role;
+  badge.textContent = role==='operator'?'👨‍💼 Operator':role==='storekeeper'?'🏪 Storekeeper':'👑 Owner';
+
+  // Add/remove buttons
+  if(role==='storekeeper'||role==='owner'){
+    ['btnAddShoe','btnAddShoe2','btnAddShoe3','btnAddCloth','btnAddAcc'].forEach(id=>{
+      const el=document.getElementById(id);if(el)el.style.display='inline-flex';
+    });
+  } else {
+    ['btnAddShoe','btnAddShoe2','btnAddShoe3','btnAddCloth','btnAddAcc'].forEach(id=>{
+      const el=document.getElementById(id);if(el)el.style.display='none';
+    });
+  }
+
+  // Switch button: show if originalRole is storekeeper or owner (regardless of current view)
+  const sw = document.getElementById('switchRoleBtn');
+  sw.style.display = (originalRole==='operator') ? 'none' : 'inline-block';
+
+  // Owner extras
+  if(role==='owner'){ renderDash(); renderBranchCards(); }
+  goTo('home');
+  showNotif('Switched to ' + (role==='operator'?'Operator':role==='storekeeper'?'Storekeeper':'Owner') + ' view!');
+}
+
+// PWA Install
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('installBtn');
+  if(btn) btn.style.display = 'inline-block';
+});
+
+function installApp(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; document.getElementById('installBtn').style.display='none'; });
+  } else {
+    // Show manual instructions
+    showInstallGuide();
+  }
+}
+
+function showInstallGuide(){
+  const ov = document.createElement('div');
+  ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:700;display:flex;align-items:flex-end;justify-content:center;padding:1rem;';
+  ov.innerHTML = `<div style="background:#fff;border-radius:20px;width:100%;max-width:480px;padding:1.5rem;text-align:center;">
+    <div style="font-size:1.5rem;margin-bottom:0.5rem">📲</div>
+    <div style="font-weight:700;font-size:1rem;color:#1a1a2e;margin-bottom:1rem">Install as App</div>
+    <div style="background:#f5f8ff;border-radius:12px;padding:1rem;text-align:left;margin-bottom:1rem;">
+      <div style="font-size:0.88rem;color:#444;line-height:1.8;">
+        <b>Android (Chrome):</b><br/>
+        ⋮ Menu → "Add to Home Screen" → Install<br/><br/>
+        <b>iPhone (Safari):</b><br/>
+        Share button → "Add to Home Screen"
+      </div>
+    </div>
+    <button onclick="this.closest('div[style]').remove()" style="width:100%;padding:0.9rem;background:linear-gradient(135deg,#c9a84c,#e8c97a);border:none;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">Got it!</button>
+  </div>`;
+  document.body.appendChild(ov);
+}
+
+window.addEventListener('appinstalled', () => {
+  showNotif('App installed! 🎉');
+  document.getElementById('installBtn').style.display='none';
+});
+
+function showNotif(msg,type='success'){
+  const el=document.getElementById('notif');
+  el.textContent=msg;el.className='notif'+(type==='error'?' error':'');
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>
