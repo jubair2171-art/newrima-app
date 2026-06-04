@@ -170,7 +170,7 @@ body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;mi
     <div class="login-cards">
       <button class="role-btn operator" onclick="selectRole('operator')"><span class="r-icon">👨‍💼</span><span class="r-label">Operator</span></button>
       <button class="role-btn storekeeper" onclick="selectRole('storekeeper')"><span class="r-icon">🏪</span><span class="r-label">Storekeeper</span></button>
-      <button class="role-btn owner" onclick="ownerLogin()"><span class="r-icon">👑</span><span class="r-label">Owner</span></button>
+      <button class="role-btn owner" (onclick="selectRole('owner')")"><span class="r-icon">👑</span><span class="r-label">Owner</span></button>
     </div>
     <div class="login-form" id="passForm" style="display:none;">
       <div class="login-form-title">Enter your password</div>
