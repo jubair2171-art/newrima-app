@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>New Rima Best Trading</title>
+<meta name="application-name" content="New Rima"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="New Rima"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#c9a84c"/>
+<link rel="apple-touch-icon" href="/icon-192.png"/>
+<link rel="icon" href="/icon-192.png"/>
+<link rel="manifest" href="/manifest.json"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#f0f4ff;--card:#fff;--border:#e0e6f0;--gold:#c9a84c;--gold2:#e8c97a;--cream:#1a1a2e;--red:#b5341e;--green:#2d8a4e;--blue:#1e6cb5;--text:#555;}
+body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;}
+#loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(160deg,#f8f9ff 0%,#eef1ff 50%,#e8f4ff 100%);padding:1.5rem;}
+.login-box{width:100%;max-width:400px;text-align:center;}
+.login-logo{font-family:"Playfair Display",serif;font-size:2.2rem;color:#1a1a2e;font-weight:700;margin-bottom:0.3rem;}
+.login-logo span{color:var(--gold);}
+.login-tagline{font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(30,30,60,0.5);margin-bottom:2rem;}
+.login-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;margin-bottom:1.5rem;}
+.role-btn{padding:1.2rem 0.5rem 1rem;border:none;background:rgba(255,255,255,0.9);color:#444;font-family:"DM Sans",sans-serif;cursor:pointer;transition:all 0.25s;border-radius:16px;border:2px solid rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:0.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.08);}
+.role-btn .r-icon{font-size:2rem;}
+.role-btn .r-label{font-size:0.75rem;font-weight:500;}
+.role-btn.active.operator{background:linear-gradient(135deg,#1e4d8c,#1e6cb5);border-color:rgba(110,170,255,0.5);color:#fff;box-shadow:0 8px 25px rgba(30,108,181,0.4);transform:translateY(-3px);}
+.role-btn.active.storekeeper{background:linear-gradient(135deg,#1a5c35,#2d8a4e);border-color:rgba(93,200,126,0.5);color:#fff;box-shadow:0 8px 25px rgba(45,138,78,0.4);transform:translateY(-3px);}
+.role-btn.active.owner{background:linear-gradient(135deg,#7a5c10,#c9a84c);border-color:rgba(232,201,122,0.5);color:#fff;box-shadow:0 8px 25px rgba(201,168,76,0.4);transform:translateY(-3px);}
+.login-form{background:rgba(255,255,255,0.95);border:1px solid rgba(0,0,0,0.08);border-radius:20px;padding:1.8rem 1.5rem;box-shadow:0 10px 40px rgba(0,0,0,0.1);}
+.login-form-title{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:1rem;}
+.login-input{width:100%;background:#f5f5f5;border:1.5px solid rgba(0,0,0,0.1);color:#222;padding:1rem 1.2rem;font-family:"DM Sans",sans-serif;font-size:0.95rem;outline:none;margin-bottom:1rem;border-radius:12px;}
+.login-input:focus{border-color:var(--gold);background:#fff;}
+.login-btn{width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#000;padding:1rem;font-size:0.95rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;border-radius:12px;box-shadow:0 6px 20px rgba(201,168,76,0.4);}
+.login-error{color:#ff6b6b;font-size:0.85rem;margin-top:0.8rem;display:none;background:rgba(255,107,107,0.1);padding:0.5rem;border-radius:8px;}
+#app{display:none;}
+.topbar{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+.topbar-logo{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--gold);}
+.topbar-right{display:flex;align-items:center;gap:0.8rem;}
+.role-badge{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:20px;}
+.role-badge.operator{background:rgba(30,108,181,0.2);color:#6ab0f5;border:1px solid #1e6cb5;}
+.role-badge.storekeeper{background:rgba(45,138,78,0.2);color:#5dc87e;border:1px solid #2d8a4e;}
+.role-badge.owner{background:rgba(201,168,76,0.2);color:var(--gold);border:1px solid var(--gold);}
+.logout-btn{background:transparent;border:1px solid var(--border);color:var(--text);padding:0.4rem 0.9rem;font-size:0.8rem;cursor:pointer;border-radius:6px;}
+.main-wrap{padding-top:70px;min-height:100vh;}
+.page{display:none;padding:1.5rem 1.1rem 2rem;}
+.page.active{display:block;}
+.back-btn{display:inline-flex;align-items:center;gap:0.5rem;background:#fff;border:1px solid #dde5f5;color:#555;padding:0.5rem 1.1rem;font-size:0.82rem;cursor:pointer;border-radius:20px;margin-bottom:1rem;font-family:"DM Sans",sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.folder-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-top:0.5rem;}
+.folder-card{border-radius:20px;padding:1.8rem 0.8rem 1.4rem;text-align:center;cursor:pointer;transition:all 0.22s;border:1.5px solid #e4eaf8;background:#fff;box-shadow:0 2px 16px rgba(80,100,180,0.08);position:relative;overflow:hidden;}
+.folder-card::after{content:'›';position:absolute;bottom:0.6rem;right:0.9rem;font-size:1rem;color:rgba(0,0,0,0.15);}
+.folder-card:active{transform:scale(0.95);}
+.folder-card:hover{border-color:var(--gold);box-shadow:0 6px 24px rgba(201,168,76,0.2);transform:translateY(-3px);}
+.f-icon{font-size:3rem;display:block;margin-bottom:0.7rem;}
+.f-name{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.4rem;}
+.f-count{font-size:0.7rem;color:var(--gold);background:rgba(201,168,76,0.12);display:inline-block;padding:0.2rem 0.7rem;border-radius:20px;font-weight:600;}
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.page-title{font-family:"Playfair Display",serif;font-size:1.4rem;color:#1a1a2e;font-weight:700;}
+.greeting{font-family:"Playfair Display",serif;font-size:1.6rem;color:#0a0a1a;margin-bottom:0.3rem;font-weight:900;}
+.greeting-sub{font-size:0.85rem;color:#444;margin-bottom:1.2rem;font-weight:600;}
+.btn{padding:0.55rem 1.2rem;font-size:0.82rem;font-weight:500;border:none;cursor:pointer;transition:all 0.2s;border-radius:6px;font-family:"DM Sans",sans-serif;}
+.btn-gold{background:var(--gold);color:#000;}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--cream);}
+.btn-red{background:var(--red);color:#fff;}
+.btn-green{background:var(--green);color:#fff;}
+.btn-sm{padding:0.35rem 0.8rem;font-size:0.75rem;}
+.btn-full{width:100%;padding:0.9rem;font-size:0.9rem;font-weight:700;border-radius:12px;margin-bottom:0.6rem;}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.card{background:#fff;border:1px solid #e8eef8;border-radius:12px;overflow:hidden;transition:all 0.2s;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.card-img{height:160px;background:#f5f8ff;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;}
+.card-img-count{position:absolute;bottom:0.4rem;right:0.4rem;background:rgba(0,0,0,0.7);color:var(--gold);font-size:0.65rem;padding:0.15rem 0.4rem;border-radius:3px;}
+.card-body{padding:0.9rem;}
+.card-brand{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.2rem;}
+.card-name{font-size:0.95rem;font-weight:600;color:#1a1a2e;margin-bottom:0.6rem;}
+.sizes-row{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.6rem;}
+.size-chip{padding:0.2rem 0.45rem;font-size:0.68rem;border-radius:3px;border:1px solid;}
+.size-avail{background:rgba(45,138,78,0.15);color:#5dc87e;border-color:rgba(45,138,78,0.4);}
+.size-unavail{background:rgba(181,52,30,0.1);color:#e07070;border-color:rgba(181,52,30,0.3);opacity:0.5;}
+.card-price{font-size:1rem;font-weight:600;color:var(--gold);}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.6rem;padding-top:0.6rem;border-top:1px solid var(--border);}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1rem;}
+.stat-card{background:#fff;border:1px solid #e8eef8;border-radius:10px;padding:1rem;box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+.stat-num{font-family:"Playfair Display",serif;font-size:1.6rem;color:var(--gold);}
+.stat-label{font-size:0.7rem;opacity:0.5;text-transform:uppercase;letter-spacing:0.1em;margin-top:0.2rem;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 -8px 30px rgba(0,0,0,0.12);}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);}
+.modal-title{font-family:"Playfair Display",serif;font-size:1.2rem;color:#1a1a2e;}
+.modal-close{background:transparent;border:none;color:#888;font-size:1.5rem;cursor:pointer;}
+.modal-body{padding:1.2rem 1.5rem;}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:0.8rem;}
+.form-group{margin-bottom:1rem;}
+.form-label{display:block;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.6;margin-bottom:0.4rem;}
+.form-input,.form-select{width:100%;background:#f5f8ff;border:1px solid #dde5f5;color:#1a1a2e;padding:0.75rem 1rem;font-family:"DM Sans",sans-serif;font-size:0.9rem;outline:none;border-radius:8px;transition:border-color 0.2s;}
+.form-input:focus,.form-select:focus{border-color:var(--gold);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+.manage-list{margin-top:0.5rem;}
+.manage-item{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1rem;background:#fff;border:1px solid #e8eef8;border-radius:10px;margin-bottom:0.6rem;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
+.manage-item-name{font-size:0.95rem;font-weight:600;color:#1a1a2e;}
+.manage-item-sub{font-size:0.75rem;color:#888;margin-top:0.1rem;}
+.manage-item-actions{display:flex;gap:0.5rem;}
+.icon-btn{width:32px;height:32px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
+.icon-btn-red{background:rgba(181,52,30,0.12);color:var(--red);}
+.sizes-manager{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem;}
+.size-toggle{padding:0.35rem 0.7rem;border:1px solid var(--border);background:transparent;color:var(--text);font-size:0.78rem;cursor:pointer;border-radius:4px;transition:all 0.2s;font-family:"DM Sans",sans-serif;}
+.size-toggle.selected{background:rgba(201,168,76,0.2);border-color:var(--gold);color:var(--gold);}
+.stock-table{width:100%;border-collapse:collapse;margin-top:0.8rem;}
+.stock-table th{text-align:left;padding:0.6rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.5;border-bottom:1px solid var(--border);}
+.stock-table td{padding:0.6rem;border-bottom:1px solid #f0f0f0;font-size:0.85rem;}
+.stock-input{width:60px;background:#f5f8ff;border:1px solid var(--border);color:var(--cream);padding:0.3rem 0.4rem;text-align:center;border-radius:4px;font-size:0.85rem;}
+.plus-btn,.minus-btn{width:28px;height:28px;border:none;border-radius:4px;cursor:pointer;font-size:1rem;font-weight:600;}
+.plus-btn{background:rgba(45,138,78,0.3);color:#5dc87e;}
+.minus-btn{background:rgba(181,52,30,0.3);color:#e07070;}
+.color-row{display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.4rem 0;}
+.color-chip{padding:0.25rem 0.7rem;border-radius:20px;font-size:0.72rem;font-weight:600;border:1.5px solid rgba(0,0,0,0.1);}
+.empty-state{text-align:center;padding:3rem 1rem;opacity:0.4;grid-column:1/-1;}
+.empty-state .icon{font-size:2.5rem;margin-bottom:0.8rem;}
+.img-viewer{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:600;display:none;align-items:center;justify-content:center;flex-direction:column;}
+.img-viewer.open{display:flex;}
+.img-viewer img,.img-viewer video{max-width:95%;max-height:80vh;object-fit:contain;border-radius:8px;}
+.img-viewer-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.2);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.3rem;cursor:pointer;}
+.notif{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--green);color:#fff;padding:0.7rem 1.5rem;border-radius:20px;font-size:0.85rem;z-index:300;opacity:0;transition:all 0.3s;white-space:nowrap;}
+.notif.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.notif.error{background:var(--red);}
+.section-divider{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#888;margin:1.2rem 0 0.6rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);}
+/* Search */
+.search-bar{display:flex;gap:0.6rem;margin-bottom:1rem;}
+.search-input{flex:1;background:#fff;border:1.5px solid #dde5f5;color:#1a1a2e;padding:0.7rem 1rem;font-family:"DM Sans",sans-serif;font-size:0.9rem;outline:none;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.search-input:focus{border-color:var(--gold);}
+/* Order log */
+.order-row{display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:#fff;border:1px solid #e8eef8;border-radius:10px;margin-bottom:0.6rem;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
+.order-num{font-size:1rem;font-weight:700;color:var(--gold);}
+.order-info{font-size:0.78rem;color:#888;margin-top:0.2rem;}
+.order-amounts{text-align:right;}
+.order-total{font-size:0.9rem;font-weight:700;color:var(--cream);}
+.order-party{font-size:0.75rem;color:var(--green);}
+.order-due{font-size:0.75rem;color:var(--red);}
+/* Dashboard folders */
+.dash-folder{background:#fff;border:1.5px solid #e4eaf8;border-radius:16px;padding:1rem;margin-bottom:0.8rem;box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+.dash-folder-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;}
+.dash-folder-name{font-size:1rem;font-weight:700;color:#1a1a2e;}
+.dash-folder-total{font-size:0.9rem;font-weight:700;color:var(--gold);}
+.dash-entry{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid #f0f4ff;}
+.dash-entry:last-child{border-bottom:none;}
+.dash-entry-name{font-size:0.85rem;color:#444;}
+.dash-entry-amount{font-size:0.85rem;font-weight:600;color:var(--cream);}
+/* Country/Range folders */
+.folder-vietnam{border-color:rgba(218,37,29,0.3);background:linear-gradient(145deg,#fff5f5,#fff);}
+.folder-china{border-color:rgba(255,215,0,0.4);background:linear-gradient(145deg,#fffef0,#fff);}
+.folder-indonesia{border-color:rgba(206,17,38,0.3);background:linear-gradient(145deg,#fff5f5,#fff);}
+.folder-turkey{border-color:rgba(227,10,23,0.3);background:linear-gradient(145deg,#fff5f5,#fff);}
+.folder-bangladesh{border-color:rgba(0,106,78,0.3);background:linear-gradient(145deg,#f0fff8,#fff);}
+.folder-other{border-color:rgba(150,150,150,0.3);background:linear-gradient(145deg,#f8f8f8,#fff);}
+.folder-range1{border-color:rgba(30,108,181,0.35);background:linear-gradient(145deg,#f0f5ff,#fff);}
+.folder-range2{border-color:rgba(45,138,78,0.35);background:linear-gradient(145deg,#f0fff5,#fff);}
+.folder-range3{border-color:rgba(201,168,76,0.4);background:linear-gradient(145deg,#fffbf0,#fff);}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <div class="login-box">
+    <div class="login-logo">New <span>Rima</span></div>
+    <div class="login-tagline">Best Trading — Staff Portal</div>
+    <div class="login-cards">
+      <button class="role-btn operator" onclick="selectRole('operator')"><span class="r-icon">👨‍💼</span><span class="r-label">Operator</span></button>
+      <button class="role-btn storekeeper" onclick="selectRole('storekeeper')"><span class="r-icon">🏪</span><span class="r-label">Storekeeper</span></button>
+      <button class="role-btn owner" onclick="selectRole('owner')"><span class="r-icon">👑</span><span class="r-label">Owner</span></button>
+    </div>
+    <div class="login-form">
+      <div class="login-form-title">Enter your password</div>
+      <input class="login-input" type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+      <button class="login-btn" onclick="doLogin()">LOGIN →</button>
+      <div class="login-error" id="loginError">❌ Wrong password. Try again.</div>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-logo">New Rima</div>
+    <div class="topbar-right">
+      <button id="installBtn" onclick="installApp()" style="display:none;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#000;border:none;padding:0.35rem 0.8rem;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;">📲 Install</button>
+      <button id="switchRoleBtn" onclick="openSwitchRole()" style="display:none;background:linear-gradient(135deg,#1e6cb5,#3a8fd4);color:#fff;border:none;padding:0.4rem 1rem;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;">🔄 Switch</button>
+      <span class="role-badge" id="roleBadge"></span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="main-wrap">
+    <div class="page active" id="page-home"><div class="greeting" id="home-greeting">Welcome</div><div class="greeting-sub">New Rima Best Trading</div><div class="folder-grid" id="home-folders"></div></div>
+    <!-- SEARCH PAGE -->
+    <div class="page" id="page-search">
+      <button class="back-btn" onclick="goTo('home')">← Back</button>
+      <div class="page-header"><div class="page-title">🔍 Search</div></div>
+      <div class="search-bar">
+        <input class="search-input" id="searchInput" placeholder="Search brand, shoe name, size..." oninput="doSearch()"/>
+      </div>
+      <div id="searchResults"></div>
+    </div>
+    <!-- SHOES -->
+    <div class="page" id="page-shoes"><button class="back-btn" onclick="goTo('home')">← Back</button><div class="page-header"><div class="page-title">👟 Brands</div></div><div id="brands-manage"></div></div>
+    <div class="page" id="page-shoes-country"><button class="back-btn" onclick="goTo('shoes')">← Back</button><div class="page-header"><div class="page-title" id="title-country">Made In</div></div><div id="country-folders"></div></div>
+    <div class="page" id="page-shoes-range"><button class="back-btn" onclick="goTo('shoes-country')">← Back</button><div class="page-header"><div class="page-title" id="title-range">Size Range</div></div><div id="range-folders"></div></div>
+    <div class="page" id="page-shoes-names"><button class="back-btn" onclick="goTo('shoes-range')">← Back</button><div class="page-header"><div class="page-title" id="title-names">Models</div></div><div id="names-manage"></div></div>
+    <div class="page" id="page-shoes-products"><button class="back-btn" onclick="goTo('shoes-names')">← Back</button><div class="page-header"><div class="page-title" id="title-products">Products</div></div><div class="cards-grid" id="shoes-cards"></div></div>
+    <div class="page" id="page-clothes"><button class="back-btn" onclick="goTo('home')">← Back</button><div class="page-header"><div class="page-title">👕 Clothes</div></div><div class="cards-grid" id="clothes-cards"></div></div>
+    <div class="page" id="page-accessories"><button class="back-btn" onclick="goTo('home')">← Back</button><div class="page-header"><div class="page-title">📱 Accessories</div></div><div class="cards-grid" id="accessories-cards"></div></div>
+    <!-- ORDERS -->
+    <div class="page" id="page-orders">
+      <button class="back-btn" onclick="goTo('home')">← Back</button>
+      <div class="page-header"><div class="page-title">📋 Orders</div><button class="btn btn-gold btn-sm" onclick="openAddOrder()">+ Add</button></div>
+      <div class="stats-grid" id="order-stats"></div>
+      <div id="orders-list"></div>
+    </div>
+    <!-- DASHBOARD -->
+    <div class="page" id="page-dashboard">
+      <button class="back-btn" onclick="goTo('home')">← Back</button>
+      <div class="page-header"><div class="page-title">📊 Dashboard</div><button class="btn btn-gold btn-sm" onclick="openAddDashFolder()">+ Folder</button></div>
+      <div class="stats-grid" id="dash-stats"></div>
+      <div id="dash-folders"></div>
+    </div>
+    <div class="page" id="page-branches"><button class="back-btn" onclick="goTo('home')">← Back</button><div class="page-header"><div class="page-title">🏪 Branches</div><button class="btn btn-gold btn-sm" onclick="openAddBranch()">+ Add</button></div><div class="manage-list" id="branches-list"></div></div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="detailModal"><div class="modal"><div class="modal-header"><div class="modal-title" id="detailTitle">Product</div><button class="modal-close" onclick="closeModal('detailModal')">×</button></div><div class="modal-body" id="detailBody"></div><div class="modal-footer" id="detailFooter"></div></div></div>
+<div class="modal-overlay" id="quickModal"><div class="modal"><div class="modal-header"><div class="modal-title" id="quickModalTitle">Add</div><button class="modal-close" onclick="closeModal('quickModal')">×</button></div><div class="modal-body" id="quickModalBody"></div></div></div>
+<div class="modal-overlay" id="editModal"><div class="modal"><div class="modal-header"><div class="modal-title">✏️ Edit</div><button class="modal-close" onclick="closeModal('editModal')">×</button></div><div class="modal-body" id="editModalBody"></div><div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('editModal')">Cancel</button><button class="btn btn-gold" onclick="saveEdit()">Save</button></div></div></div>
+<div class="modal-overlay" id="branchModal"><div class="modal"><div class="modal-header"><div class="modal-title">🏪 Add Branch</div><button class="modal-close" onclick="closeModal('branchModal')">×</button></div><div class="modal-body"><div class="form-group"><label class="form-label">Branch Name</label><input class="form-input" id="inp-branch-name"/></div><div class="form-group"><label class="form-label">Location</label><input class="form-input" id="inp-branch-loc"/></div><button class="btn btn-gold btn-full" onclick="saveBranch()">Add</button></div></div></div>
+
+<div id="switchRoleModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;align-items:flex-end;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:20px;width:100%;max-width:480px;padding:1.5rem;">
+    <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:1.2rem;text-align:center;">🔄 Switch Role</div>
+    <div id="switchRoleGrid" style="display:grid;gap:0.8rem;margin-bottom:1.2rem;"></div>
+    <button onclick="closeSwitchRole()" style="width:100%;padding:0.9rem;border:1.5px solid #e0e8f5;background:#fff;border-radius:12px;font-family:DM Sans,sans-serif;font-size:0.88rem;cursor:pointer;color:#888;">Cancel</button>
+  </div>
+</div>
+
+<div class="img-viewer" id="imgViewer">
+  <button class="img-viewer-close" onclick="closeViewer()">×</button>
+  <div id="viewerContent"></div>
+  <div style="display:flex;gap:1rem;margin-top:1.2rem;">
+    <a id="viewerDownload" href="" download style="padding:0.7rem 1.5rem;border-radius:20px;font-size:0.88rem;cursor:pointer;font-weight:600;background:#c9a84c;color:#000;text-decoration:none;">⬇️ Download</a>
+    <button onclick="closeViewer()" style="padding:0.7rem 1.5rem;border-radius:20px;font-size:0.88rem;cursor:pointer;font-weight:600;background:rgba(255,255,255,0.15);color:#fff;border:none;">Close</button>
+  </div>
+</div>
+<div class="notif" id="notif"></div>
+
+<script>
+const PASS={operator:'Opra2121',storekeeper:'Store3232',owner:'Renow2171'};
+let role=null,selRole=null,originalRole=null;
+let curBrand='',curCountry='',curRange='',curName='';
+let editPid='',editCat='',editSelSizes=[];
+let uploadTarget={};
+let qSelSizes=[],qSelSizes2=[];
+
+const ALL_SIZES=['35','36','37','38','39','40','41','42','43','44','45','46','47'];
+const COUNTRIES=['Vietnam','China','Indonesia','Turkey','Bangladesh','Other'];
+const COUNTRY_FLAGS={'Vietnam':'🇻🇳','China':'🇨🇳','Indonesia':'🇮🇩','Turkey':'🇹🇷','Bangladesh':'🇧🇩','Other':'🌍'};
+const COUNTRY_CLS={'Vietnam':'folder-vietnam','China':'folder-china','Indonesia':'folder-indonesia','Turkey':'folder-turkey','Bangladesh':'folder-bangladesh','Other':'folder-other'};
+const SIZE_RANGES=[
+  {id:'36-41',label:'36 — 41',sizes:['36','37','38','39','40','41'],cls:'folder-range1'},
+  {id:'40-47',label:'40 — 47',sizes:['40','41','42','43','44','45','46','47'],cls:'folder-range2'},
+  {id:'36-47',label:'36 — 47',sizes:['36','37','38','39','40','41','42','43','44','45','46','47'],cls:'folder-range3'},
+];
+
+let D=JSON.parse(localStorage.getItem('nrbt')||'null')||{
+  branches:[{id:'b1',name:'Home Sports',loc:'Doha'},{id:'b2',name:'New Rima',loc:'Doha'}],
+  brands:['Nike','Adidas','Jordan','Puma','Vans','Reebok'],
+  products:{shoes:[],clothes:[],accessories:[]},
+  orders:[],
+  dashFolders:[
+    {id:'f1',name:'💰 Salary',icon:'💰',entries:[]},
+    {id:'f2',name:'🚚 Delivery',icon:'🚚',entries:[]},
+    {id:'f3',name:'👥 Party',icon:'👥',entries:[]},
+    {id:'f4',name:'🎁 Gift / Expense',icon:'🎁',entries:[]}
+  ]
+};
+// migrate
+if(!D.orders)D.orders=[];
+if(!D.dashFolders)D.dashFolders=[
+  {id:'f1',name:'💰 Salary',icon:'💰',entries:[]},
+  {id:'f2',name:'🚚 Delivery',icon:'🚚',entries:[]},
+  {id:'f3',name:'👥 Party',icon:'👥',entries:[]},
+  {id:'f4',name:'🎁 Gift / Expense',icon:'🎁',entries:[]}
+];
+if(D.products&&D.products.shoes){
+  D.products.shoes.forEach(p=>{
+    if(!p.colors)p.colors=[];if(!p.raw)p.raw=[];if(!p.design)p.design=[];
+    if(!p.video)p.video=[];if(!p.stock)p.stock={};if(!p.sizes)p.sizes=[];
+    if(!p.made)p.made='Other';if(!p.sizeRange)p.sizeRange='36-41';
+  });
+}
+if(!D.brands)D.brands=['Nike','Adidas','Jordan','Puma','Vans','Reebok'];
+function save(){localStorage.setItem('nrbt',JSON.stringify(D));}
+
+// LOGIN
+function selectRole(r){selRole=r;document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active'));document.querySelector('.role-btn.'+r).classList.add('active');}
+function doLogin(){
+  if(!selRole){showNotif('Select a role!','error');return;}
+  if(document.getElementById('loginPass').value===PASS[selRole]){
+    role=selRole;originalRole=selRole;
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('app').style.display='block';
+    init();
+  }else{document.getElementById('loginError').style.display='block';}
+}
+function logout(){
+  role=null;selRole=null;originalRole=null;
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('app').style.display='none';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginError').style.display='none';
+  document.getElementById('switchRoleBtn').style.display='none';
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active'));
+}
+function init(){
+  const badge=document.getElementById('roleBadge');
+  badge.className='role-badge '+role;
+  badge.textContent=role==='operator'?'👨‍💼 Operator':role==='storekeeper'?'🏪 Storekeeper':'👑 Owner';
+  if(role==='storekeeper'||role==='owner')document.getElementById('switchRoleBtn').style.display='inline-block';
+  goTo('home');
+}
+
+// NAV
+function goTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  if(page==='home')renderHome();
+  if(page==='search'){document.getElementById('searchInput').value='';document.getElementById('searchResults').innerHTML='';}
+  if(page==='shoes')renderBrandsPage();
+  if(page==='shoes-country')renderCountryPage();
+  if(page==='shoes-range')renderRangePage();
+  if(page==='shoes-names')renderNamesPage();
+  if(page==='shoes-products')renderShoeCards();
+  if(page==='clothes')renderCards('clothes');
+  if(page==='accessories')renderCards('accessories');
+  if(page==='orders')renderOrdersPage();
+  if(page==='dashboard')renderDashPage();
+  if(page==='branches')renderBranchesPage();
+}
+
+// HOME
+function renderHome(){
+  const greetMap={operator:'Operator Panel',storekeeper:'Storekeeper Panel',owner:'Owner Panel'};
+  document.getElementById('home-greeting').textContent=greetMap[role]||'Welcome';
+  const items=[
+    {id:'search',icon:'🔍',name:'Search',count:null},
+    {id:'shoes',icon:'👟',name:'Shoes',count:D.products.shoes.length},
+    {id:'clothes',icon:'👕',name:'Clothes',count:D.products.clothes.length},
+    {id:'accessories',icon:'📱',name:'Accessories',count:D.products.accessories.length},
+  ];
+  if(role==='storekeeper'||role==='owner'){
+    items.push({id:'orders',icon:'📋',name:'Orders',count:D.orders.length});
+  }
+  if(role==='owner'){
+    items.push({id:'dashboard',icon:'📊',name:'Dashboard',count:null});
+    items.push({id:'branches',icon:'🏪',name:'Branches',count:null});
+  }
+  document.getElementById('home-folders').innerHTML=items.map(f=>`
+    <div class="folder-card" onclick="goTo('${f.id}')">
+      <span class="f-icon">${f.icon}</span><div class="f-name">${f.name}</div>
+      ${f.count!==null?`<div class="f-count">${f.count} items</div>`:'<div class="f-count">Open →</div>'}
+    </div>`).join('');
+}
+
+// SEARCH
+function doSearch(){
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  if(!q){document.getElementById('searchResults').innerHTML='';return;}
+  const results=D.products.shoes.filter(p=>
+    p.brand.toLowerCase().includes(q)||
+    p.name.toLowerCase().includes(q)||
+    (p.made||'').toLowerCase().includes(q)||
+    (p.sizes||[]).some(s=>s===q)
+  );
+  if(!results.length){
+    document.getElementById('searchResults').innerHTML='<div class="empty-state"><div class="icon">🔍</div><p>No results found</p></div>';
+    return;
+  }
+  document.getElementById('searchResults').innerHTML=`
+    <div style="font-size:0.8rem;color:#888;margin-bottom:0.8rem;">${results.length} result(s)</div>
+    <div class="cards-grid">${results.map(p=>productCardHTML('shoes',p)).join('')}</div>`;
+}
+
+// L1: BRANDS
+function renderBrandsPage(){
+  const canEdit=role==='storekeeper'||role==='owner';
+  let html=canEdit?`<button class="btn btn-gold btn-full" onclick="openAddBrand()">+ Add New Brand</button>`:'';
+  html+='<div class="manage-list">';
+  if(!D.brands.length)html+='<div class="empty-state"><div class="icon">🏷️</div><p>No brands yet</p></div>';
+  else D.brands.forEach(b=>{
+    const cnt=D.products.shoes.filter(p=>p.brand===b).length;
+    html+=`<div class="manage-item">
+      <div onclick="selBrand('${b.replace(/'/g,"\\'")}');" style="flex:1;cursor:pointer;">
+        <div class="manage-item-name">👟 ${b}</div><div class="manage-item-sub">${cnt} models</div>
+      </div>
+      ${canEdit?`<div class="manage-item-actions"><button class="icon-btn icon-btn-red" onclick="deleteBrand('${b.replace(/'/g,"\\'")}')">🗑</button></div>`:''}
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('brands-manage').innerHTML=html;
+}
+function openAddBrand(){
+  document.getElementById('quickModalTitle').textContent='Add Brand';
+  document.getElementById('quickModalBody').innerHTML=`<div class="form-group"><label class="form-label">Brand Name</label><input class="form-input" id="q-brand" placeholder="e.g. Nike"/></div><button class="btn btn-gold btn-full" onclick="saveBrandItem()">Add</button>`;
+  openModal('quickModal');
+}
+function saveBrandItem(){
+  const name=document.getElementById('q-brand').value.trim();
+  if(!name){showNotif('Enter brand name','error');return;}
+  if(D.brands.includes(name)){showNotif('Already exists!','error');return;}
+  D.brands.push(name);save();closeModal('quickModal');renderBrandsPage();showNotif('Brand added!');
+}
+function deleteBrand(b){
+  if(!confirm('Delete brand "'+b+'"?'))return;
+  D.brands=D.brands.filter(x=>x!==b);
+  D.products.shoes=D.products.shoes.filter(p=>p.brand!==b);
+  save();renderBrandsPage();showNotif('Deleted!');
+}
+function selBrand(b){curBrand=b;document.getElementById('title-country').textContent='🌍 '+b+' — Made In';goTo('shoes-country');}
+
+// L2: COUNTRY
+function renderCountryPage(){
+  let html='<div class="folder-grid">';
+  COUNTRIES.forEach(c=>{
+    const cnt=D.products.shoes.filter(p=>p.brand===curBrand&&(p.made||'Other')===c).length;
+    html+=`<div class="folder-card ${COUNTRY_CLS[c]||''}" onclick="selCountry('${c}')">
+      <span class="f-icon">${COUNTRY_FLAGS[c]||'🌍'}</span><div class="f-name">${c}</div><div class="f-count">${cnt} models</div>
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('country-folders').innerHTML=html;
+}
+function selCountry(c){curCountry=c;document.getElementById('title-range').textContent=COUNTRY_FLAGS[c]+' '+curBrand+' '+c+' — Size Range';goTo('shoes-range');}
+
+// L3: SIZE RANGE
+function renderRangePage(){
+  let html='<div class="folder-grid">';
+  SIZE_RANGES.forEach(r=>{
+    const cnt=D.products.shoes.filter(p=>p.brand===curBrand&&(p.made||'Other')===curCountry&&(p.sizeRange||'36-41')===r.id).length;
+    html+=`<div class="folder-card ${r.cls}" onclick="selRange('${r.id}')">
+      <span class="f-icon">📏</span><div class="f-name">${r.label}</div><div class="f-count">${cnt} models</div>
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('range-folders').innerHTML=html;
+}
+function selRange(r){
+  curRange=r;
+  const rObj=SIZE_RANGES.find(x=>x.id===r);
+  document.getElementById('title-names').textContent='👟 '+curBrand+' ('+rObj.label+')';
+  goTo('shoes-names');
+}
+
+// L4: SHOE NAMES
+function renderNamesPage(){
+  const canEdit=role==='storekeeper'||role==='owner';
+  const prods=D.products.shoes.filter(p=>p.brand===curBrand&&(p.made||'Other')===curCountry&&(p.sizeRange||'36-41')===curRange);
+  const names=[...new Set(prods.map(p=>p.name))];
+  let html=canEdit?`<button class="btn btn-gold btn-full" onclick="openAddShoeName()">+ Add Shoe Model</button>`:'';
+  html+='<div class="manage-list">';
+  if(!names.length)html+='<div class="empty-state"><div class="icon">👟</div><p>No models yet</p></div>';
+  else names.forEach(n=>{
+    const p=prods.find(x=>x.name===n);
+    const avail=p&&p.sizes?p.sizes.filter(s=>(p.stock[s]||0)>0).length:0;
+    const total=p&&p.sizes?p.sizes.length:0;
+    const firstImg=p&&p.raw&&p.raw.length?p.raw[0]:null;
+    const imgHtml=firstImg&&firstImg.startsWith('data:')?`<img src="${firstImg}" style="width:44px;height:44px;object-fit:cover;border-radius:8px;margin-right:0.8rem;"/>`:`<span style="font-size:2rem;margin-right:0.8rem;">👟</span>`;
+    html+=`<div class="manage-item">
+      <div style="display:flex;align-items:center;flex:1;cursor:pointer;" onclick="selName('${n.replace(/'/g,"\\'")}')">
+        ${imgHtml}<div><div class="manage-item-name">${n}</div><div class="manage-item-sub">${avail}/${total} sizes</div></div>
+      </div>
+      ${canEdit?`<div class="manage-item-actions"><button class="icon-btn icon-btn-red" onclick="deleteShoeName('${n.replace(/'/g,"\\'")}')">🗑</button></div>`:''}
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('names-manage').innerHTML=html;
+}
+function openAddShoeName(){
+  qSelSizes=[];
+  const rObj=SIZE_RANGES.find(x=>x.id===curRange);
+  const rangeSizes=rObj?rObj.sizes:ALL_SIZES;
+  document.getElementById('quickModalTitle').textContent='Add Shoe Model';
+  document.getElementById('quickModalBody').innerHTML=`
+    <div class="form-group"><label class="form-label">Shoe Name</label><input class="form-input" id="q-name" placeholder="e.g. Air Force 1"/></div>
+    <div class="form-group"><label class="form-label">Branch</label><select class="form-select" id="q-branch">${D.branches.map(b=>`<option value="${b.id}">${b.name}</option>`).join('')}</select></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">💰 Regular (QR)</label><input class="form-input" id="q-reg" type="number" placeholder="250"/></div>
+      <div class="form-group"><label class="form-label">🏷️ Last (QR)</label><input class="form-input" id="q-last" type="number" placeholder="200"/></div>
+    </div>
+    ${role==='owner'?`<div class="form-group"><label class="form-label">💵 Cost (QR)</label><input class="form-input" id="q-cost" type="number" placeholder="150"/></div>`:''}
+    <div class="form-group"><label class="form-label">📏 Sizes (${rObj?rObj.label:''})</label>
+      <div class="sizes-manager">${rangeSizes.map(s=>`<button class="size-toggle" onclick="togQSz('${s}',this)">${s}</button>`).join('')}</div>
+    </div>
+    <button class="btn btn-gold btn-full" onclick="saveNewShoe()">Add Shoe</button>`;
+  openModal('quickModal');
+}
+function togQSz(sz,btn){if(qSelSizes.includes(sz)){qSelSizes=qSelSizes.filter(s=>s!==sz);btn.classList.remove('selected');}else{qSelSizes.push(sz);btn.classList.add('selected');}}
+function saveNewShoe(){
+  const name=document.getElementById('q-name').value.trim();
+  if(!name){showNotif('Enter shoe name','error');return;}
+  const stk={};qSelSizes.forEach(s=>stk[s]=0);
+  const cost=role==='owner'?(parseFloat(document.getElementById('q-cost').value)||0):0;
+  D.products.shoes.push({
+    id:'p'+Date.now(),brand:curBrand,name,made:curCountry,sizeRange:curRange,
+    branch:document.getElementById('q-branch').value,
+    reg:parseFloat(document.getElementById('q-reg').value)||0,
+    last:parseFloat(document.getElementById('q-last').value)||0,
+    cost,colors:[],sizes:qSelSizes.slice(),stock:stk,
+    raw:[],design:[],video:[],sold:0,soldToday:0,lastDate:''
+  });
+  qSelSizes=[];save();closeModal('quickModal');renderNamesPage();showNotif('Shoe added!');
+}
+function deleteShoeName(n){
+  if(!confirm('Delete "'+n+'"?'))return;
+  D.products.shoes=D.products.shoes.filter(p=>!(p.brand===curBrand&&(p.made||'Other')===curCountry&&(p.sizeRange||'36-41')===curRange&&p.name===n));
+  save();renderNamesPage();showNotif('Deleted!');
+}
+function selName(n){curName=n;document.getElementById('title-products').textContent=curBrand+' '+n;goTo('shoes-products');}
+
+// L5: PRODUCTS
+function renderShoeCards(){
+  const prods=D.products.shoes.filter(p=>p.brand===curBrand&&(p.made||'Other')===curCountry&&(p.sizeRange||'36-41')===curRange&&p.name===curName);
+  const canEdit=role==='storekeeper'||role==='owner';
+  let html=canEdit?`<div style="grid-column:1/-1;margin-bottom:0.5rem;"><button class="btn btn-gold btn-full" onclick="openAddProduct('shoes')">+ Add Product</button></div>`:'';
+  if(!prods.length)html+='<div class="empty-state"><div class="icon">📦</div><p>No products yet</p></div>';
+  else prods.forEach(p=>{html+=productCardHTML('shoes',p);});
+  document.getElementById('shoes-cards').innerHTML=html;
+}
+
+function productCardHTML(cat,p){
+  const stock=p.sizes?p.sizes.reduce((s,sz)=>s+(p.stock[sz]||0),0):0;
+  const sizesHtml=p.sizes?`<div class="sizes-row">${p.sizes.map(sz=>`<span class="size-chip ${(p.stock[sz]||0)>0?'size-avail':'size-unavail'}">${sz}</span>`).join('')}</div>`:'';
+  const firstImg=p.raw&&p.raw.length?p.raw[0]:null;
+  const cardImgHtml=firstImg&&firstImg.startsWith('data:')?`<img src="${firstImg}" style="width:100%;height:100%;object-fit:cover;"/>`:`<span style="font-size:3.5rem">👟</span>`;
+  const colorHtml=p.colors&&p.colors.length?`<div class="color-row">${p.colors.map(c=>`<span class="color-chip" style="background:${c.hex||'#eee'};color:${isDark(c.hex)?'#fff':'#000'}">${c.name}</span>`).join('')}</div>`:'';
+  return `<div class="card" onclick="openDetail('${cat}','${p.id}')">
+    <div class="card-img">${cardImgHtml}<div class="card-img-count">📸${(p.raw||[]).length}</div></div>
+    <div class="card-body">
+      <div class="card-brand">${p.brand} ${p.made?`<span style="font-size:0.6rem;opacity:0.6">${COUNTRY_FLAGS[p.made]||'🌍'}${p.made}</span>`:''}</div>
+      <div class="card-name">${p.name}</div>
+      ${colorHtml}${sizesHtml}
+      ${(role==='storekeeper'||role==='owner')?`<div style="font-size:0.75rem;opacity:0.6;margin-bottom:0.4rem">Stock: ${stock} pcs</div>`:''}
+      <div class="card-footer">
+        <div><div class="card-price">QR ${p.reg}</div><div style="font-size:0.7rem;color:#e07070">Last: QR ${p.last}</div></div>
+        <button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openDetail('${cat}','${p.id}')">View</button>
+      </div>
+    </div>
+  </div>`;
+}
+function isDark(hex){if(!hex)return false;const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return(r*299+g*587+b*114)/1000<128;}
+
+function renderCards(cat){
+  const canEdit=role==='storekeeper'||role==='owner';
+  let html=canEdit?`<div style="grid-column:1/-1;margin-bottom:0.5rem;"><button class="btn btn-gold btn-full" onclick="openAddProduct('${cat}')">+ Add Product</button></div>`:'';
+  const prods=D.products[cat];
+  if(!prods.length)html+='<div class="empty-state"><div class="icon">📦</div><p>No products yet</p></div>';
+  else prods.forEach(p=>{html+=productCardHTML(cat,p);});
+  document.getElementById(cat+'-cards').innerHTML=html;
+}
+
+let addPcat='shoes';
+function openAddProduct(cat){
+  addPcat=cat;qSelSizes2=[];
+  const rObj=SIZE_RANGES.find(x=>x.id===curRange);
+  const rangeSizes=rObj?rObj.sizes:ALL_SIZES;
+  document.getElementById('quickModalTitle').textContent='Add Product';
+  document.getElementById('quickModalBody').innerHTML=`
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Brand</label><input class="form-input" id="q-brand2" value="${cat==='shoes'?curBrand:''}" placeholder="Nike"/></div>
+      <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="q-name2" value="${cat==='shoes'?curName:''}" placeholder="Air Force 1"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Made In</label><select class="form-select" id="q-made2">${COUNTRIES.map(c=>`<option ${c===curCountry?'selected':''}>${c}</option>`).join('')}</select></div>
+      <div class="form-group"><label class="form-label">Branch</label><select class="form-select" id="q-branch2">${D.branches.map(b=>`<option value="${b.id}">${b.name}</option>`).join('')}</select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">💰 Regular (QR)</label><input class="form-input" id="q-reg2" type="number" placeholder="250"/></div>
+      <div class="form-group"><label class="form-label">🏷️ Last (QR)</label><input class="form-input" id="q-last2" type="number" placeholder="200"/></div>
+    </div>
+    ${role==='owner'?`<div class="form-group"><label class="form-label">💵 Cost (QR)</label><input class="form-input" id="q-cost2" type="number" placeholder="150"/></div>`:''}
+    <div class="form-group"><label class="form-label">📏 Sizes</label>
+      <div class="sizes-manager">${rangeSizes.map(s=>`<button class="size-toggle" onclick="togQSz2('${s}',this)">${s}</button>`).join('')}</div>
+    </div>
+    <button class="btn btn-gold btn-full" onclick="saveAddProduct()">Add Product</button>`;
+  openModal('quickModal');
+}
+function togQSz2(sz,btn){if(qSelSizes2.includes(sz)){qSelSizes2=qSelSizes2.filter(s=>s!==sz);btn.classList.remove('selected');}else{qSelSizes2.push(sz);btn.classList.add('selected');}}
+function saveAddProduct(){
+  const brand=document.getElementById('q-brand2').value.trim();
+  const name=document.getElementById('q-name2').value.trim();
+  if(!brand||!name){showNotif('Fill brand and name','error');return;}
+  const stk={};qSelSizes2.forEach(s=>stk[s]=0);
+  const cost=role==='owner'?(parseFloat(document.getElementById('q-cost2').value)||0):0;
+  D.products[addPcat].push({
+    id:'p'+Date.now(),brand,name,
+    made:document.getElementById('q-made2').value,
+    sizeRange:curRange||'36-41',
+    branch:document.getElementById('q-branch2').value,
+    reg:parseFloat(document.getElementById('q-reg2').value)||0,
+    last:parseFloat(document.getElementById('q-last2').value)||0,
+    cost,colors:[],sizes:qSelSizes2.slice(),stock:stk,
+    raw:[],design:[],video:[],sold:0,soldToday:0,lastDate:''
+  });
+  qSelSizes2=[];save();closeModal('quickModal');
+  if(addPcat==='shoes')renderShoeCards();else renderCards(addPcat);
+  showNotif('Product added!');
+}
+
+// DETAIL
+function openDetail(cat,id){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  const canEdit=role==='storekeeper'||role==='owner';
+  document.getElementById('detailTitle').textContent=p.brand+' — '+p.name;
+  let html='';
+  // Media
+  const mediaSection=(label,type,items)=>`
+    <div class="section-divider">${label}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:0.5rem;margin-bottom:0.5rem;">
+      ${items.map((m,i)=>m.startsWith('data:')?
+        (type==='video'
+          ?`<div style="height:80px;border-radius:10px;overflow:hidden;border:2px solid #e0e8f0;position:relative;">
+              <video src="${m}" style="width:100%;height:100%;object-fit:cover" playsinline></video>
+              <div onclick="openViewer('${m}','video')" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);cursor:pointer;"><span style="font-size:1.5rem">▶️</span></div>
+            </div>`
+          :`<div onclick="openViewer('${m}','image')" style="height:80px;border-radius:10px;overflow:hidden;border:2px solid #e0e8f0;cursor:pointer;"><img src="${m}" style="width:100%;height:100%;object-fit:cover"/></div>`)
+        :`<div style="height:80px;background:#f5f8ff;border:1px solid #e0e8f0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2rem">${m}</div>`
+      ).join('')}
+      ${canEdit?`<div onclick="triggerUpload('${type}','${cat}','${id}')" style="height:80px;background:#f5f8ff;border:1.5px dashed #c0cce8;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;color:#aaa;gap:0.2rem;"><span style="font-size:1.5rem">${type==='video'?'🎬':type==='design'?'🎨':'📷'}</span><span style="font-size:0.65rem">Add</span></div>`:''}
+    </div>`;
+  html+=mediaSection('📸 Raw Pictures','raw',p.raw||[]);
+  html+=mediaSection('🎨 Design Pictures','design',p.design||[]);
+  html+=mediaSection('🎥 Videos','video',p.video||[]);
+  // Colors
+  html+=`<div class="section-divider">🎨 Colors</div>
+  <div class="color-row" id="detail-colors-${id}">
+    ${(p.colors||[]).map((c,i)=>`<span class="color-chip" style="background:${c.hex||'#eee'};color:${isDark(c.hex)?'#fff':'#000'}">${c.name}${canEdit?` <span onclick="removeColor('${cat}','${id}',${i})" style="cursor:pointer;margin-left:3px;">×</span>`:''}</span>`).join('')}
+  </div>
+  ${canEdit?`<div style="display:flex;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;">
+    <input id="color-name-${id}" class="form-input" placeholder="Color name" style="flex:1;min-width:100px;padding:0.5rem 0.7rem;"/>
+    <input type="color" id="color-hex-${id}" value="#c9a84c" style="width:44px;height:38px;border:none;border-radius:8px;cursor:pointer;"/>
+    <button class="btn btn-gold btn-sm" onclick="addColor('${cat}','${id}')">+ Add</button>
+  </div>`:''}`;
+  // Info
+  html+=`<div class="section-divider">📦 Info</div>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+    <div style="color:var(--gold);font-weight:600">💰 QR ${p.reg}</div>
+    <div style="color:#e07070;font-weight:600">🏷️ QR ${p.last}</div>
+    <div style="opacity:0.6;font-size:0.85rem">${COUNTRY_FLAGS[p.made]||'🌍'} ${p.made||'—'}</div>
+  </div>`;
+  if(p.sizes&&p.sizes.length){
+    html+=`<div class="section-divider">📏 Sizes</div>
+    <div class="sizes-row">${p.sizes.map(sz=>`<span class="size-chip ${(p.stock[sz]||0)>0?'size-avail':'size-unavail'}">${sz}${role==='owner'?` (${p.stock[sz]||0})`:''}</span>`).join('')}</div>`;
+  }
+  if(canEdit&&p.sizes&&p.sizes.length){
+    html+=`<div class="section-divider">📦 Stock</div>
+    <table class="stock-table"><tr><th>Size</th><th>Stock</th><th>±</th></tr>
+    ${p.sizes.map(sz=>`<tr>
+      <td><strong>${sz}</strong></td>
+      <td><input class="stock-input" id="stk-${id}-${sz}" value="${p.stock[sz]||0}" type="number" min="0" onchange="updateStock('${cat}','${id}','${sz}',this.value)"/></td>
+      <td style="display:flex;gap:0.3rem;">
+        <button class="plus-btn" onclick="chgStock('${cat}','${id}','${sz}',1)">+</button>
+        <button class="minus-btn" onclick="chgStock('${cat}','${id}','${sz}',-1)">−</button>
+      </td>
+    </tr>`).join('')}</table>
+    <div style="margin-top:1.2rem;padding:1rem;background:#fff8f0;border:1.5px solid #f0c080;border-radius:12px;">
+      <div style="font-size:0.75rem;color:#a07820;text-transform:uppercase;font-weight:600;margin-bottom:0.8rem;">🛒 Mark as Sold</div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+        <select id="sold-size-${id}" style="flex:1;min-width:80px;background:#fff;border:1.5px solid #e0c080;color:#333;padding:0.6rem;border-radius:8px;font-size:0.85rem;outline:none;">
+          ${p.sizes.map(sz=>`<option value="${sz}">Size ${sz} (${p.stock[sz]||0})</option>`).join('')}
+        </select>
+        <input id="sold-qty-${id}" type="number" min="1" value="1" style="width:60px;background:#fff;border:1.5px solid #e0c080;color:#333;padding:0.6rem;border-radius:8px;text-align:center;font-size:0.85rem;outline:none;"/>
+        <button onclick="markSold('${cat}','${id}')" style="background:linear-gradient(135deg,#e8a020,#c9a84c);color:#fff;border:none;padding:0.6rem 1rem;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;">✅ Sold</button>
+      </div>
+    </div>`;
+  }
+  if(role==='owner'){
+    const totStock=p.sizes?p.sizes.reduce((s,sz)=>s+(p.stock[sz]||0),0):0;
+    const today=new Date().toDateString();
+    const todaySold=p.lastDate===today?(p.soldToday||0):0;
+    html+=`<div style="margin-top:1rem;padding:1rem;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:8px">
+      <div style="font-size:0.7rem;opacity:0.5;text-transform:uppercase;margin-bottom:0.8rem">👑 Owner View</div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:0.6rem">
+        <div><div style="font-size:1.2rem;color:var(--gold)">${totStock}</div><div style="font-size:0.7rem;opacity:0.5">Stock</div></div>
+        <div><div style="font-size:1.2rem;color:#5dc87e">${p.sold||0}</div><div style="font-size:0.7rem;opacity:0.5">Total Sold</div></div>
+        <div><div style="font-size:1.2rem;color:#f0a500">${todaySold}</div><div style="font-size:0.7rem;opacity:0.5">Today Sold</div></div>
+      </div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <div style="color:#e07070">💵 Cost: QR ${p.cost||0}</div>
+        <div style="color:#5dc87e">📈 Profit/pc: QR ${(p.last||0)-(p.cost||0)}</div>
+        <div style="color:var(--gold)">💰 Revenue: QR ${(p.sold||0)*(p.last||0)}</div>
+        <div style="color:#5dc87e">🏆 Profit: QR ${(p.sold||0)*((p.last||0)-(p.cost||0))}</div>
+      </div>
+    </div>`;
+  }
+  document.getElementById('detailBody').innerHTML=html;
+  let foot=`<button class="btn btn-outline" onclick="closeModal('detailModal')">Close</button>`;
+  if(canEdit){foot+=`<button class="btn btn-red btn-sm" onclick="delProduct('${cat}','${id}')">🗑</button><button class="btn btn-gold btn-sm" onclick="openEditModal('${cat}','${id}')">✏️ Edit</button>`;}
+  document.getElementById('detailFooter').innerHTML=foot;
+  openModal('detailModal');
+}
+
+// COLORS
+function addColor(cat,id){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  const name=document.getElementById('color-name-'+id).value.trim();
+  const hex=document.getElementById('color-hex-'+id).value;
+  if(!name){showNotif('Enter color name','error');return;}
+  if(!p.colors)p.colors=[];p.colors.push({name,hex});save();
+  const row=document.getElementById('detail-colors-'+id);
+  if(row)row.innerHTML=(p.colors||[]).map((c,i)=>`<span class="color-chip" style="background:${c.hex||'#eee'};color:${isDark(c.hex)?'#fff':'#000'}">${c.name} <span onclick="removeColor('${cat}','${id}',${i})" style="cursor:pointer;margin-left:3px;">×</span></span>`).join('');
+  document.getElementById('color-name-'+id).value='';showNotif('Color added!');
+}
+function removeColor(cat,id,idx){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  p.colors.splice(idx,1);save();
+  const row=document.getElementById('detail-colors-'+id);
+  if(row)row.innerHTML=(p.colors||[]).map((c,i)=>`<span class="color-chip" style="background:${c.hex||'#eee'};color:${isDark(c.hex)?'#fff':'#000'}">${c.name} <span onclick="removeColor('${cat}','${id}',${i})" style="cursor:pointer;margin-left:3px;">×</span></span>`).join('');
+  showNotif('Removed!');
+}
+
+// STOCK
+function updateStock(cat,id,sz,val){const p=D.products[cat].find(x=>x.id===id);if(!p)return;p.stock[sz]=Math.max(0,parseInt(val)||0);save();}
+function chgStock(cat,id,sz,d){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  p.stock[sz]=Math.max(0,(p.stock[sz]||0)+d);
+  if(d<0){p.sold=(p.sold||0)+1;const today=new Date().toDateString();if(p.lastDate!==today){p.soldToday=0;p.lastDate=today;}p.soldToday=(p.soldToday||0)+1;}
+  const inp=document.getElementById(`stk-${id}-${sz}`);if(inp)inp.value=p.stock[sz];
+  save();if(cat==='shoes')renderShoeCards();else renderCards(cat);showNotif(d>0?'Stock added!':'Sold -1');
+}
+function markSold(cat,id){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  const sz=document.getElementById('sold-size-'+id).value;
+  const qty=parseInt(document.getElementById('sold-qty-'+id).value)||1;
+  if((p.stock[sz]||0)<qty){showNotif('Not enough stock!','error');return;}
+  p.stock[sz]=(p.stock[sz]||0)-qty;p.sold=(p.sold||0)+qty;
+  const today=new Date().toDateString();
+  if(p.lastDate!==today){p.soldToday=0;p.lastDate=today;}p.soldToday=(p.soldToday||0)+qty;
+  save();
+  const inp=document.getElementById(`stk-${id}-${sz}`);if(inp)inp.value=p.stock[sz];
+  const sel=document.getElementById('sold-size-'+id);if(sel)Array.from(sel.options).forEach(o=>{o.text=`Size ${o.value} (${p.stock[o.value]||0})`;});
+  if(cat==='shoes')renderShoeCards();else renderCards(cat);showNotif(`✅ Sold ${qty} x Size ${sz}`);
+}
+function delProduct(cat,id){
+  if(!confirm('Delete this product?'))return;
+  D.products[cat]=D.products[cat].filter(p=>p.id!==id);
+  save();closeModal('detailModal');
+  if(cat==='shoes')renderShoeCards();else renderCards(cat);showNotif('Deleted!');
+}
+
+// EDIT MODAL
+function openEditModal(cat,id){
+  editPid=id;editCat=cat;
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  editSelSizes=p.sizes?[...p.sizes]:[];
+  const rObj=SIZE_RANGES.find(x=>x.id===(p.sizeRange||'36-41'));
+  const rangeSizes=rObj?rObj.sizes:ALL_SIZES;
+  closeModal('detailModal');
+  document.getElementById('editModalBody').innerHTML=`
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Brand</label><input class="form-input" id="e-brand" value="${p.brand}"/></div>
+      <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="e-name" value="${p.name}"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Made In</label><select class="form-select" id="e-made">${COUNTRIES.map(c=>`<option ${(p.made||'Other')===c?'selected':''}>${c}</option>`).join('')}</select></div>
+      <div class="form-group"><label class="form-label">Branch</label><select class="form-select" id="e-branch">${D.branches.map(b=>`<option value="${b.id}" ${p.branch===b.id?'selected':''}>${b.name}</option>`).join('')}</select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">💰 Regular (QR)</label><input class="form-input" id="e-reg" type="number" value="${p.reg||0}"/></div>
+      <div class="form-group"><label class="form-label">🏷️ Last (QR)</label><input class="form-input" id="e-last" type="number" value="${p.last||0}"/></div>
+    </div>
+    ${role==='owner'?`<div class="form-group"><label class="form-label">💵 Cost (QR)</label><input class="form-input" id="e-cost" type="number" value="${p.cost||0}"/></div>`:''}
+    <div class="form-group"><label class="form-label">📏 Sizes</label>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem;">
+        ${rangeSizes.map(s=>`<button type="button" id="esz-${s}" onclick="togEditSize('${s}')"
+          style="padding:0.35rem 0.75rem;border-radius:6px;font-size:0.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;
+          ${editSelSizes.includes(s)?'background:#c9a84c;color:#000;border:2px solid #c9a84c;font-weight:700;':'background:#f0f4ff;color:#888;border:2px solid #e0e8f0;'}">${s}</button>`).join('')}
+      </div>
+    </div>`;
+  openModal('editModal');
+}
+function togEditSize(sz){
+  if(editSelSizes.includes(sz)){editSelSizes=editSelSizes.filter(s=>s!==sz);document.getElementById('esz-'+sz).style.cssText='padding:0.35rem 0.75rem;border-radius:6px;font-size:0.8rem;cursor:pointer;font-family:DM Sans,sans-serif;background:#f0f4ff;color:#888;border:2px solid #e0e8f0;';}
+  else{editSelSizes.push(sz);editSelSizes.sort((a,b)=>Number(a)-Number(b));document.getElementById('esz-'+sz).style.cssText='padding:0.35rem 0.75rem;border-radius:6px;font-size:0.8rem;cursor:pointer;font-family:DM Sans,sans-serif;background:#c9a84c;color:#000;border:2px solid #c9a84c;font-weight:700;';}
+}
+function saveEdit(){
+  const p=D.products[editCat].find(x=>x.id===editPid);if(!p)return;
+  p.brand=document.getElementById('e-brand').value||p.brand;
+  p.name=document.getElementById('e-name').value||p.name;
+  p.made=document.getElementById('e-made').value;
+  p.branch=document.getElementById('e-branch').value;
+  p.reg=Number(document.getElementById('e-reg').value)||p.reg;
+  p.last=Number(document.getElementById('e-last').value)||p.last;
+  if(role==='owner'){const c=document.getElementById('e-cost');if(c)p.cost=Number(c.value)||p.cost;}
+  if(editSelSizes.length>0){p.sizes=editSelSizes;editSelSizes.forEach(s=>{if(p.stock[s]===undefined)p.stock[s]=0;});}
+  save();closeModal('editModal');
+  if(editCat==='shoes')renderShoeCards();else renderCards(editCat);showNotif('Updated!');
+}
+
+// MEDIA
+function triggerUpload(type,cat,id){
+  uploadTarget={type,cat,id};
+  const inp=document.createElement('input');
+  inp.type='file';inp.accept=type==='video'?'video/*':'image/*';inp.multiple=true;inp.style.display='none';
+  inp.onchange=function(){handleUpload(this);document.body.removeChild(inp);};
+  document.body.appendChild(inp);inp.click();
+}
+function handleUpload(input){
+  const files=Array.from(input.files);if(!files.length)return;
+  const{type,cat,id}=uploadTarget;
+  files.forEach(file=>{
+    if(file.type.startsWith('image/')){
+      const reader=new FileReader();
+      reader.onload=function(e){
+        const img=new Image();
+        img.onload=function(){
+          const canvas=document.createElement('canvas');
+          let w=img.width,h=img.height,max=800;
+          if(w>max||h>max){if(w>h){h=Math.round(h*max/w);w=max;}else{w=Math.round(w*max/h);h=max;}}
+          canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);
+          saveMedia(cat,id,type,canvas.toDataURL('image/jpeg',0.7));
+        };img.src=e.target.result;
+      };reader.readAsDataURL(file);
+    }else{const reader=new FileReader();reader.onload=function(e){saveMedia(cat,id,type,e.target.result);};reader.readAsDataURL(file);}
+  });
+}
+function saveMedia(cat,id,type,src){
+  const p=D.products[cat].find(x=>x.id===id);if(!p)return;
+  p[type].push(src);save();showNotif('Uploaded!');openDetail(cat,id);
+}
+
+// ===== ORDERS =====
+function renderOrdersPage(){
+  const orders=D.orders;
+  const totalOrders=orders.length;
+  const totalAmt=orders.reduce((s,o)=>s+(o.total||0),0);
+  const totalParty=orders.reduce((s,o)=>s+(o.party||0),0);
+  const totalDue=totalAmt-totalParty;
+  document.getElementById('order-stats').innerHTML=`
+    <div class="stat-card"><div class="stat-num">${totalOrders}</div><div class="stat-label">Total Orders</div></div>
+    <div class="stat-card"><div class="stat-num">QR ${totalAmt}</div><div class="stat-label">Total Amount</div></div>
+    <div class="stat-card" style="border-color:rgba(45,138,78,0.4)"><div class="stat-num" style="color:#5dc87e">QR ${totalParty}</div><div class="stat-label">Party Payment</div></div>
+    <div class="stat-card" style="border-color:rgba(181,52,30,0.4)"><div class="stat-num" style="color:var(--red)">QR ${totalDue}</div><div class="stat-label">Total Due</div></div>`;
+  if(!orders.length){
+    document.getElementById('orders-list').innerHTML='<div class="empty-state"><div class="icon">📋</div><p>No orders yet</p></div>';
+    return;
+  }
+  document.getElementById('orders-list').innerHTML=orders.slice().reverse().map(o=>`
+    <div class="order-row">
+      <div>
+        <div class="order-num">#${o.orderNum}</div>
+        <div class="order-info">${o.date||''}</div>
+      </div>
+      <div class="order-amounts">
+        <div class="order-total">QR ${o.total}</div>
+        <div class="order-party">Paid: QR ${o.party}</div>
+        <div class="order-due">Due: QR ${(o.total||0)-(o.party||0)}</div>
+      </div>
+      <button class="icon-btn icon-btn-red" onclick="deleteOrder('${o.id}')">🗑</button>
+    </div>`).join('');
+}
+function openAddOrder(){
+  document.getElementById('quickModalTitle').textContent='Add Order';
+  document.getElementById('quickModalBody').innerHTML=`
+    <div class="form-group"><label class="form-label">Order Number</label><input class="form-input" id="o-num" placeholder="e.g. 212"/></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Total Amount (QR)</label><input class="form-input" id="o-total" type="number" placeholder="500"/></div>
+      <div class="form-group"><label class="form-label">Party Payment (QR)</label><input class="form-input" id="o-party" type="number" placeholder="300"/></div>
+    </div>
+    <button class="btn btn-gold btn-full" onclick="saveOrder()">Submit Order</button>`;
+  openModal('quickModal');
+}
+function saveOrder(){
+  const orderNum=document.getElementById('o-num').value.trim();
+  const total=parseFloat(document.getElementById('o-total').value)||0;
+  const party=parseFloat(document.getElementById('o-party').value)||0;
+  if(!orderNum){showNotif('Enter order number','error');return;}
+  D.orders.push({
+    id:'o'+Date.now(),orderNum,total,party,
+    date:new Date().toLocaleDateString()
+  });
+  save();closeModal('quickModal');renderOrdersPage();showNotif('Order added!');
+}
+function deleteOrder(id){
+  if(!confirm('Delete this order?'))return;
+  D.orders=D.orders.filter(o=>o.id!==id);
+  save();renderOrdersPage();showNotif('Deleted!');
+}
+
+// ===== DASHBOARD =====
+function renderDashPage(){
+  const all=[...D.products.shoes,...D.products.clothes,...D.products.accessories];
+  const totStock=all.reduce((s,p)=>s+(p.sizes?p.sizes.reduce((a,sz)=>a+(p.stock[sz]||0),0):0),0);
+  const totSold=all.reduce((s,p)=>s+(p.sold||0),0);
+  const today=new Date().toDateString();
+  const todaySold=all.reduce((s,p)=>s+((p.lastDate===today?p.soldToday:0)||0),0);
+  const totProfit=all.reduce((s,p)=>s+((p.sold||0)*((p.last||0)-(p.cost||0))),0);
+  const todayProfit=all.reduce((s,p)=>{const ts=(p.lastDate===today?p.soldToday:0)||0;return s+(ts*((p.last||0)-(p.cost||0)));},0);
+  document.getElementById('dash-stats').innerHTML=`
+    <div class="stat-card"><div class="stat-num">${D.products.shoes.length}</div><div class="stat-label">Total Shoes</div></div>
+    <div class="stat-card"><div class="stat-num">${totStock}</div><div class="stat-label">Total Stock</div></div>
+    <div class="stat-card"><div class="stat-num">${totSold}</div><div class="stat-label">Total Sold</div></div>
+    <div class="stat-card" style="border-color:rgba(240,165,0,0.4)"><div class="stat-num" style="color:#f0a500">${todaySold}</div><div class="stat-label">Today Sold</div></div>
+    <div class="stat-card" style="border-color:rgba(45,138,78,0.4)"><div class="stat-num" style="color:#5dc87e">QR ${totProfit}</div><div class="stat-label">Total Profit</div></div>
+    <div class="stat-card" style="border-color:rgba(45,138,78,0.4)"><div class="stat-num" style="color:#5dc87e">QR ${todayProfit}</div><div class="stat-label">Today Profit</div></div>`;
+  // Folders
+  let fhtml='';
+  D.dashFolders.forEach(f=>{
+    const total=f.entries.reduce((s,e)=>s+(e.amount||0),0);
+    fhtml+=`<div class="dash-folder">
+      <div class="dash-folder-header">
+        <div class="dash-folder-name">${f.name}</div>
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <div class="dash-folder-total">QR ${total}</div>
+          <button class="btn btn-gold btn-sm" onclick="openAddFolderEntry('${f.id}')">+ Add</button>
+          <button class="icon-btn icon-btn-red" onclick="deleteDashFolder('${f.id}')">🗑</button>
+        </div>
+      </div>
+      ${f.entries.length?f.entries.map((e,i)=>`
+        <div class="dash-entry">
+          <div>
+            <div class="dash-entry-name">${e.name}</div>
+            <div style="font-size:0.7rem;color:#aaa">${e.date||''}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <div class="dash-entry-amount">QR ${e.amount}</div>
+            <button class="icon-btn icon-btn-red" style="width:24px;height:24px;font-size:0.75rem;" onclick="deleteFolderEntry('${f.id}',${i})">×</button>
+          </div>
+        </div>`).join(''):'<div style="font-size:0.8rem;color:#aaa;padding:0.5rem 0;">No entries yet</div>'}
+    </div>`;
+  });
+  document.getElementById('dash-folders').innerHTML=fhtml;
+}
+function openAddDashFolder(){
+  document.getElementById('quickModalTitle').textContent='Add Folder';
+  document.getElementById('quickModalBody').innerHTML=`
+    <div class="form-group"><label class="form-label">Folder Name</label><input class="form-input" id="df-name" placeholder="e.g. 💰 Salary"/></div>
+    <button class="btn btn-gold btn-full" onclick="saveDashFolder()">Add Folder</button>`;
+  openModal('quickModal');
+}
+function saveDashFolder(){
+  const name=document.getElementById('df-name').value.trim();
+  if(!name){showNotif('Enter folder name','error');return;}
+  D.dashFolders.push({id:'f'+Date.now(),name,entries:[]});
+  save();closeModal('quickModal');renderDashPage();showNotif('Folder added!');
+}
+function deleteDashFolder(id){
+  if(!confirm('Delete this folder?'))return;
+  D.dashFolders=D.dashFolders.filter(f=>f.id!==id);
+  save();renderDashPage();showNotif('Deleted!');
+}
+function openAddFolderEntry(fid){
+  document.getElementById('quickModalTitle').textContent='Add Entry';
+  document.getElementById('quickModalBody').innerHTML=`
+    <div class="form-group"><label class="form-label">Description</label><input class="form-input" id="fe-name" placeholder="e.g. Staff salary Jan"/></div>
+    <div class="form-group"><label class="form-label">Amount (QR)</label><input class="form-input" id="fe-amount" type="number" placeholder="500"/></div>
+    <button class="btn btn-gold btn-full" onclick="saveFolderEntry('${fid}')">Add Entry</button>`;
+  openModal('quickModal');
+}
+function saveFolderEntry(fid){
+  const name=document.getElementById('fe-name').value.trim();
+  const amount=parseFloat(document.getElementById('fe-amount').value)||0;
+  if(!name){showNotif('Enter description','error');return;}
+  const f=D.dashFolders.find(x=>x.id===fid);if(!f)return;
+  f.entries.push({name,amount,date:new Date().toLocaleDateString()});
+  save();closeModal('quickModal');renderDashPage();showNotif('Entry added!');
+}
+function deleteFolderEntry(fid,idx){
+  const f=D.dashFolders.find(x=>x.id===fid);if(!f)return;
+  f.entries.splice(idx,1);save();renderDashPage();showNotif('Deleted!');
+}
+
+// BRANCHES
+function renderBranchesPage(){
+  document.getElementById('branches-list').innerHTML=D.branches.map(b=>`
+    <div class="manage-item">
+      <div style="flex:1;"><div class="manage-item-name">🏪 ${b.name}</div><div class="manage-item-sub">📍 ${b.loc||'—'}</div></div>
+      <div class="manage-item-actions"><button class="icon-btn icon-btn-red" onclick="deleteBranchItem('${b.id}')">🗑</button></div>
+    </div>`).join('');
+}
+function openAddBranch(){document.getElementById('inp-branch-name').value='';document.getElementById('inp-branch-loc').value='';openModal('branchModal');}
+function saveBranch(){
+  const name=document.getElementById('inp-branch-name').value.trim();
+  if(!name){showNotif('Enter name','error');return;}
+  D.branches.push({id:'b'+Date.now(),name,loc:document.getElementById('inp-branch-loc').value.trim()});
+  save();closeModal('branchModal');renderBranchesPage();showNotif('Branch added!');
+}
+function deleteBranchItem(id){
+  if(!confirm('Delete this branch?'))return;
+  D.branches=D.branches.filter(b=>b.id!==id);save();renderBranchesPage();showNotif('Deleted!');
+}
+
+// MODAL
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(el=>{el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
+
+// VIEWER (images + videos)
+function openViewer(src,type){
+  const content=document.getElementById('viewerContent');
+  if(type==='video'){
+    content.innerHTML=`<video src="${src}" controls style="max-width:95%;max-height:80vh;border-radius:8px;" autoplay playsinline></video>`;
+  }else{
+    content.innerHTML=`<img src="${src}" style="max-width:95%;max-height:80vh;object-fit:contain;border-radius:8px;"/>`;
+  }
+  document.getElementById('viewerDownload').href=src;
+  document.getElementById('viewerDownload').download=type==='video'?'video.mp4':'photo.jpg';
+  document.getElementById('imgViewer').classList.add('open');
+}
+function closeViewer(){document.getElementById('imgViewer').classList.remove('open');document.getElementById('viewerContent').innerHTML='';}
+
+// SWITCH ROLE
+function openSwitchRole(){
+  const grid=document.getElementById('switchRoleGrid');
+  const card=(r,icon,label,color,bg,border)=>`<div onclick="switchToRole('${r}')" style="padding:1.2rem 0.5rem;background:${bg};border:2px solid ${border};border-radius:14px;text-align:center;cursor:pointer;"><div style="font-size:2rem">${icon}</div><div style="font-size:0.78rem;font-weight:600;color:${color};margin-top:0.3rem">${label}</div>${role===r?'<div style="font-size:0.65rem;opacity:0.6;color:'+color+'">Current</div>':''}</div>`;
+  if(originalRole==='storekeeper'){grid.innerHTML=card('operator','👨‍💼','Operator','#1e6cb5','#f0f5ff','#1e6cb5')+card('storekeeper','🏪','Storekeeper','#2d8a4e','#f0fff5','#2d8a4e');grid.style.gridTemplateColumns='1fr 1fr';}
+  else if(originalRole==='owner'){grid.innerHTML=card('operator','👨‍💼','Operator','#1e6cb5','#f0f5ff','#1e6cb5')+card('storekeeper','🏪','Storekeeper','#2d8a4e','#f0fff5','#2d8a4e')+card('owner','👑','Owner','#a07820','#fffbf0','#c9a84c');grid.style.gridTemplateColumns='1fr 1fr 1fr';}
+  document.getElementById('switchRoleModal').style.display='flex';
+}
+function closeSwitchRole(){document.getElementById('switchRoleModal').style.display='none';}
+function switchToRole(r){
+  closeSwitchRole();role=r;
+  const badge=document.getElementById('roleBadge');
+  badge.className='role-badge '+role;
+  badge.textContent=role==='operator'?'👨‍💼 Operator':role==='storekeeper'?'🏪 Storekeeper':'👑 Owner';
+  goTo('home');showNotif('Switched to '+role+'!');
+}
+
+// PWA
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='inline-block';});
+function installApp(){
+  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('installBtn').style.display='none';});}
+  else{const ov=document.createElement('div');ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:700;display:flex;align-items:flex-end;justify-content:center;padding:1rem;';ov.innerHTML=`<div style="background:#fff;border-radius:20px;width:100%;max-width:480px;padding:1.5rem;text-align:center;"><div style="font-size:1.5rem;margin-bottom:0.5rem">📲</div><div style="font-weight:700;margin-bottom:1rem">Install as App</div><div style="background:#f5f8ff;border-radius:12px;padding:1rem;text-align:left;margin-bottom:1rem;font-size:0.88rem;color:#444;line-height:1.8;"><b>Android:</b> ⋮ → Add to Home Screen<br/><b>iPhone:</b> Share → Add to Home Screen</div><button onclick="this.closest('div[style]').remove()" style="width:100%;padding:0.9rem;background:linear-gradient(135deg,#c9a84c,#e8c97a);border:none;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;">Got it!</button></div>`;document.body.appendChild(ov);}
+}
+
+function showNotif(msg,type='success'){
+  const el=document.getElementById('notif');
+  el.textContent=msg;el.className='notif'+(type==='error'?' error':'');
+  el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>
