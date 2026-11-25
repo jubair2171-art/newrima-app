@@ -165,11 +165,41 @@ h1.pg em{font-style:normal;color:var(--cc,var(--p1))}
 .obar{display:flex;flex-direction:column;gap:8px}
 .ohead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .status{border:0;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:800;white-space:nowrap}
-.st-draft{background:var(--p4s);color:var(--p4)}.st-sent{background:var(--p5s);color:var(--p5)}.st-received{background:var(--p3s);color:var(--p3)}
+.st-draft{background:var(--p4s);color:var(--p4)}.st-process{background:var(--p4s);color:#92400e}.st-sent{background:var(--p5s);color:var(--p5)}.st-received{background:var(--p3s);color:var(--p3)}
 .oform{display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:var(--panel);border:1.5px solid var(--cc);border-radius:12px;padding:10px}
 .oform input{flex:1;min-width:140px;border:1.5px solid var(--line);background:var(--soft);border-radius:8px;padding:7px 9px}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:9px;font-size:13.5px;z-index:20}
 .copybox{width:100%;min-height:160px;box-sizing:border-box;font-family:var(--mono);font-size:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);padding:10px}
+
+.wf{display:flex;flex-direction:column;gap:8px}
+.wbtn{width:100%;justify-content:center;border:0;border-radius:14px;padding:13px;font-weight:800;font-size:14.5px;color:#fff;box-shadow:0 4px 10px #0003;display:flex}
+.wbtn.g{background:linear-gradient(135deg,#16a34a,#22c55e)}.wbtn.o{background:linear-gradient(135deg,#f97316,#f59e0b)}.wbtn.r{background:linear-gradient(135deg,#dc2626,#f43f5e)}.wbtn:disabled{opacity:.45}
+.cfmbox{background:var(--p4s);border:1.5px solid var(--p4);border-radius:14px;padding:12px;font-size:14px}.cfmbox .actions{margin-top:8px}
+.trk{display:flex;align-items:flex-start;background:var(--panel);border:1.5px solid var(--line);border-radius:16px;padding:12px 8px}
+.trk .st{display:flex;flex-direction:column;align-items:center;font-size:10.5px;font-weight:800;width:25%;color:#a39bd0;text-align:center}
+.trk .dot{width:28px;height:28px;border-radius:50%;background:#e4defa;display:flex;align-items:center;justify-content:center;font-size:13px;margin-bottom:4px;color:#fff}
+.trk .st.done{color:#059669}.trk .st.done .dot{background:#10b981}.trk .st.now{color:#d97706}.trk .st.now .dot{background:#f59e0b;box-shadow:0 0 0 5px #f59e0b33}
+.trk .ln{height:6px;flex:1;background:#e4defa;margin-top:11px;border-radius:4px}.trk .ln.done{background:#10b981}.trk small{font-weight:600;color:var(--muted);font-size:9.5px}
+.allcb{width:100%;border:0;border-radius:18px;padding:16px;text-align:left;color:#fff;background:linear-gradient(135deg,#7c3aed,#db2777);box-shadow:0 6px 16px #7c3aed44;display:flex;flex-direction:column;gap:2px}
+.allcb b{font-size:16px}.allcb span{font-size:12.5px;opacity:.92}
+.sumbig{background:linear-gradient(135deg,#7c3aed,#db2777 60%,#f59e0b);color:#fff;border-radius:22px;padding:18px;text-align:center;box-shadow:0 8px 20px #7c3aed55}
+.sumbig .k{font-size:12px;font-weight:800;letter-spacing:.08em}.sumbig .big{font-size:36px;font-weight:900;line-height:1.1}.sumbig .amt{font-size:21px;font-weight:800}
+.pc{border-radius:20px;overflow:hidden;background:var(--panel);box-shadow:0 5px 16px #4c1d9522;margin-bottom:2px}
+.pch{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;color:#fff;gap:8px}.pch b{font-size:18px}.pch small{display:block;font-size:12px;opacity:.9}
+.pch .status{background:#fff}
+.agrow{display:flex;gap:10px;background:var(--panel);border:1.5px solid var(--line);border-radius:14px;padding:8px;margin-top:8px}
+.agrow img,.agrow .nop{width:58px;height:58px;border-radius:10px;object-fit:cover;background:var(--soft);flex:0 0 58px}
+.rcard{background:var(--panel);border-radius:20px;overflow:hidden;box-shadow:0 5px 16px #00000018;margin-bottom:4px}
+.rch{display:flex;gap:10px;align-items:center;padding:10px;background:#f4f1ff}.rch img,.rch .nop{width:56px;height:56px;border-radius:12px;object-fit:cover;background:#fff;flex:0 0 56px}
+.rch.bad{background:#fee2e2}.rch .lbl{font-size:11.5px;font-weight:800;color:#6b5fa8}.rch.bad .lbl{color:#b91c1c}
+.tag{font-size:10px;font-weight:900;background:#ef4444;color:#fff;border-radius:8px;padding:2px 7px;margin-left:6px;white-space:nowrap}
+.rrow{display:flex;align-items:center;justify-content:space-between;background:#f4f1ff;border-radius:12px;padding:7px 10px;margin:8px 10px 0;font-weight:700}
+.rrow small{color:#ea580c;font-weight:800;margin-left:4px}.rrow.less{background:#fee2e2;outline:2px solid #ef4444;color:#991b1b}.rrow.more{background:#dcfce7;outline:2px solid #22c55e}
+.stp{display:flex;align-items:center;gap:10px}.stp b{min-width:22px;text-align:center;font-size:16px}
+.sb{width:34px;height:34px;border-radius:50%;border:0;font-weight:900;font-size:19px;background:#ddd6fe;color:#5b21b6;display:flex;align-items:center;justify-content:center;padding:0}
+.sb.m{background:#ef4444;color:#fff}.sb.p{background:#22c55e;color:#fff}
+.addsz{margin:8px 10px 10px;border:1.5px dashed var(--line);border-radius:10px;padding:6px 8px;background:var(--soft);font-size:13px}
+.rnote{width:100%;box-sizing:border-box;min-height:90px;border:2px dashed #fca5a5;border-radius:14px;padding:10px;font:inherit;background:#fff}
 </style>
 
 <div class="wrap" id="app"></div>
@@ -221,7 +251,10 @@ const swatches=name=>{const w=uniq((name.toLowerCase().match(/[a-z]+/g)||[]).fil
 const toast=m=>{const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),1800)};
 const all=()=>Object.entries(items).map(([id,it])=>({id,...it}));
 const ordId=it=>it.order||("d-"+catOf(it));
-const STL={draft:"Draft",sent:"Sent",received:"Received"},STN=["draft","sent","received"],STC={draft:"var(--p4)",sent:"var(--p5)",received:"var(--p3)"};
+const STL={draft:"Draft",process:"Under process",received:"Received"},STC={draft:"var(--p4)",process:"var(--p5)",received:"var(--p3)"};
+const stOf=o=>o.status==="sent"?"process":(o.status||"draft");
+const ordBase=o=>{const {id,virtual,...r}=o;return r};
+const orderItems=oid=>all().filter(i=>ordId(i)===oid&&qtyOf(i)>0);
 function ordersOf(k){
   const l=Object.entries(ords).filter(([,o])=>o.cat===k).map(([id,o])=>({id,...o}));
   if(!ords["d-"+k]&&all().some(i=>catOf(i)===k&&ordId(i)==="d-"+k))l.push({id:"d-"+k,cat:k,name:"Order 1",created:0,status:"draft",virtual:true});
@@ -249,13 +282,13 @@ function vSplash(){
 }
 function vHome(){
   return `<div class="top"><div class="kick">New Rima Best Trading</div><h1 class="pg">Product <em>order list</em></h1></div>
-  <div class="tiles">${CATS.map(c=>{const on=ordersOf(c.k).length,s=sum(inCatAll(c.k));
+  ${allcBtn()}<div class="tiles">${CATS.map(c=>{const on=ordersOf(c.k).length,s=sum(inCatAll(c.k));
     return `<button class="tile" style="--tc:var(--${c.c})" data-go="${c.k}">${ICONS[c.k]}<b>${c.label}</b><span>${on?`${on} order${on>1?"s":""} · ${s.q} ${c.unit}`:"No orders · tap to start"}</span></button>`}).join("")}</div>`;
 }
 function vCat(){
   const c=C(S.cat),l=inCat(S.cat),s=sum(l);
   const brands=uniq(l.map(i=>i.brand)),models=uniq(l.map(i=>i.brand+"\u0001"+i.model));
-  let h=`<div class="top" style="--cc:var(--${c.c})"><button class="back" data-home>← All categories</button><h1 class="pg"><em>${c.label}</em></h1></div>${orderBar(c)}
+  let h=`<div class="top" style="--cc:var(--${c.c})"><button class="back" data-home>← All categories</button><h1 class="pg"><em>${c.label}</em></h1><button class="btn xs" data-allc style="align-self:flex-start">✅ All confirmed orders</button></div>${orderBar(c)}
   ${S.oid?"":`<div class="bblock"><div class="empty">No orders yet. Tap <b>+ New</b> to start one.</div></div>`}
   <div class="stats">
     <button class="stat" style="--sb:var(--p2s);--sc:var(--p2)" data-panel="brands" aria-expanded="${S.panel==="brands"}"><div><div class="label">Brands</div><div class="v">${brands.length}</div></div><span class="chev">›</span></button>
@@ -282,12 +315,12 @@ function vCat(){
 function orderBar(c){
   const l=ordersOf(c.k),o=curOrder();
   let h=`<div class="obar" style="--cc:var(--${c.c})"><div class="otabs" role="tablist">${l.map(x=>{const q=sum(all().filter(i=>catOf(i)===c.k&&ordId(i)===x.id)).q;
-    return `<button class="otab" role="tab" aria-selected="${x.id===S.oid}" data-pick="${esc(x.id)}"><b><span class="sdot" style="background:${STC[x.status]||STC.draft}"></span>${esc(x.name)}</b><small>${x.created?new Date(x.created).toLocaleDateString("en-GB",{day:"2-digit",month:"short"}):"—"} · ${q} ${c.unit}</small></button>`}).join("")}
+    return `<button class="otab" role="tab" aria-selected="${x.id===S.oid}" data-pick="${esc(x.id)}"><b><span class="sdot" style="background:${STC[stOf(x)]||STC.draft}"></span>${esc(x.name)}</b><small>${x.created?new Date(x.created).toLocaleDateString("en-GB",{day:"2-digit",month:"short"}):"—"} · ${q} ${c.unit}</small></button>`}).join("")}
     <button class="otab add" data-onew>+ New</button></div>`;
   if(S.oform)h+=`<form class="oform" id="oForm"><input id="oInput" value="${esc(S.oform.type==="new"?"Order "+(l.length+1):(o?o.name:""))}" autocomplete="off">${S.oform.type==="new"&&catalogOf(c.k).length?`<label class="note" style="flex-basis:100%;display:flex;gap:6px;align-items:center"><input type="checkbox" id="oCarry" checked style="flex:0 0 auto;min-width:0;width:16px;height:16px"> Bring all ${catalogOf(c.k).length} ${c.k==="shoes"?"shoes":"items"} from earlier orders (photo, brand, model, price), sizes empty</label>`:""}<button class="btn xs primary" type="submit">Save</button><button class="btn xs" type="button" data-ocancel>Cancel</button></form>`;
-  if(o)h+=`<div class="ohead"><button class="status st-${o.status||"draft"}" data-ostatus>${STL[o.status]||"Draft"} ▾</button><span class="actions" style="gap:6px">${S.oconfirm?`<span class="note">Delete ${esc(o.name)} and all its items?</span><button class="btn xs danger" data-odelyes>Yes, delete</button><button class="btn xs" data-odelno>No</button>`:
+  if(o)h+=`<div class="ohead"><span class="status st-${stOf(o)}">${STL[stOf(o)]}</span><span class="actions" style="gap:6px">${S.oconfirm?`<span class="note">Delete ${esc(o.name)} and all its items?</span><button class="btn xs danger" data-odelyes>Yes, delete</button><button class="btn xs" data-odelno>No</button>`:
     `<button class="btn xs" data-orename>Edit name</button><button class="btn xs" data-ocopy>Copy</button><button class="btn xs danger" data-odel>Delete</button>`}</span></div>`;
-  return h+`</div>`;
+  return h+wfBlock(o)+`</div>`;
 }
 function copyBox(){return `<div><textarea class="copybox" id="copyBox" readonly>${esc(S.copy)}</textarea><div class="actions" style="margin-top:8px;align-items:center"><button class="btn xs" data-copyclose>Close</button><span class="note">Select the text and copy it</span></div></div>`}
 
@@ -371,9 +404,9 @@ function addForm(c){
 
 function render(){
   const ae=document.activeElement,aid=ae&&ae.id,sel=ae&&ae.selectionStart!=null?[ae.selectionStart,ae.selectionEnd]:null;
-  const keep={};["fBrand","fModel","fName","fPrice","fOrig","rnInput","oInput"].forEach(k=>{if($(k))keep[k]=$(k).value});
+  const keep={};["fBrand","fModel","fName","fPrice","fOrig","rnInput","oInput","rcNote"].forEach(k=>{if($(k))keep[k]=$(k).value});
   const v=S.view;
-  $("app").innerHTML=(v==="splash"?vSplash():v==="home"?vHome():v==="cat"?vCat():vDetails())+(v==="splash"?"":`<p class="note">${storeNote}</p>`)+lightbox();
+  $("app").innerHTML=(v==="splash"?vSplash():v==="home"?vHome():v==="cat"?vCat():v==="receive"?vReceive():v==="allc"?vAllc():vDetails())+(v==="splash"?"":`<p class="note">${storeNote}</p>`)+lightbox();
   for(const k in keep)if($(k))$(k).value=keep[k];
   if(aid&&$(aid)){const el=$(aid);el.focus({preventScroll:true});if(sel)try{el.setSelectionRange(sel[0],sel[1])}catch(e){}}
 }
@@ -382,7 +415,7 @@ function lightbox(){
   return `<div class="lightbox" data-lb-bg><img src="${esc(photoUrl(it.photo))}" alt="${esc(it.name)}"><div class="cap">${esc(it.brand)} · ${esc(it.model)} · ${esc(it.name)}</div>
     <div class="actions"><span class="btn xs filebtn">Change photo<input type="file" accept="image/*" data-photo-input="${it.id}"></span><button class="btn xs" data-nophoto="${it.id}">Remove</button><button class="btn xs" data-lb-close>Close</button></div></div>`;
 }
-function go(view){S.view=view;S.copy=null;S.open=null;S.add=false;S.rename=null;S.oform=null;S.oconfirm=false;render();window.scrollTo(0,0)}
+function go(view){S.view=view;S.copy=null;S.open=null;S.add=false;S.rename=null;S.oform=null;S.oconfirm=false;S.cfm=null;render();window.scrollTo(0,0)}
 
 /* ---------- storage: saved inside the New Rima app data (parent window) ---------- */
 function persistAll(){try{parent.nrOLSave(items,ords)}catch(e){toast("Couldn't save. Reload the app.")}}
@@ -435,6 +468,19 @@ document.addEventListener("click",e=>{
   if(lab){photoFor=lab.dataset.photoFor;$("photoInput").value="";return}
   if(e.target.matches&&e.target.matches("[data-lb-bg]")){S.photoView=null;render();return}
   const t=e.target.closest("button");if(!t)return;const d=t.dataset;
+  if("confirm" in d){const o=curOrder();if(o){S.cfm=o.id;render()}return}
+  if("cfmno" in d){S.cfm=null;render();return}
+  if("cfmyes" in d){const o=curOrder();if(o){ords[o.id]={...ordBase(o),status:"process",confirmedAt:Date.now()};S.cfm=null;saveOrder(o.id);render();toast(o.name+" confirmed · Under process")}return}
+  if("unconfirm" in d){const o=curOrder();if(o){const b=ordBase(o);delete b.confirmedAt;ords[o.id]={...b,status:"draft"};saveOrder(o.id);render();toast("Back to draft")}return}
+  if("receive" in d){const o=curOrder();if(o)startReceive(o);return}
+  if("rcback" in d){S.view="cat";S.rc=null;render();return}
+  if(d.rcm){rcStep(d.rcm,-1);return}
+  if(d.rcp){rcStep(d.rcp,1);return}
+  if("rcpdf" in d){makeMissingPDF(S.rc.oid,rcFinal(),S.rc.note);return}
+  if(d.mpdf){makeMissingPDF(d.mpdf);return}
+  if("rcdo" in d){doReceive();return}
+  if("allc" in d){S.allcFrom=S.view==="cat"?"cat":"home";S.view="allc";render();window.scrollTo(0,0);return}
+  if("allcback" in d){S.view=S.allcFrom||"home";render();return}
   if(d.view){S.photoView=d.view;render();return}
   if(d.save){const id=d.save;clearTimeout(timers[id]);if(items[id]){dirty[id]=true;save(id)}S.open=null;render();toast("Saved");return}
   if("lbClose" in d){S.photoView=null;render();return}
@@ -477,6 +523,7 @@ document.addEventListener("click",e=>{
 function focusRn(){const i=$("rnInput");if(i){i.focus();i.select()}}
 document.addEventListener("input",e=>{
   const el=e.target,d=el.dataset||{};
+  if(el.id==="rcNote"&&S.rc){S.rc.note=el.value;return}
   if(d.qty){const it=items[d.qty];el.value=el.value.replace(/[^\d]/g,"");if(!it)return;
     it.sizes={...(it.sizes||{}),[d.size]:parseInt(el.value||"0",10)};el.closest(".q").classList.toggle("has",n(el.value)>0);updRow(d.qty);scheduleSave(d.qty)}
   else if(d.price){const it=items[d.price];el.value=el.value.replace(/[^\d.]/g,"");if(!it)return;it.price=n(el.value);updRow(d.price);scheduleSave(d.price)}
@@ -490,6 +537,7 @@ function updRow(id){
 }
 document.addEventListener("change",e=>{
   const el=e.target,d=el.dataset||{};
+  if(d.rcadd!==undefined&&S.rc){if(el.value&&S.rc.q[d.rcadd]){S.rc.q[d.rcadd][el.value]=0;render()}return}
   if(d.origin){const it=items[d.origin];if(it){it.origin=el.value;scheduleSave(d.origin,0);render()}}
   if(d.cat){const it=items[d.cat];if(it){it.cat=el.value;it.order=newestOrder(el.value)||("d-"+el.value);scheduleSave(d.cat,0);S.open=null;render();toast("Moved to "+C(el.value).label)}}
   if(d.field){const it=items[d.id],v=el.value.trim();if(it&&v&&v!==it[d.field]){it[d.field]=v;scheduleSave(d.id,0);
@@ -508,7 +556,7 @@ document.addEventListener("submit",async e=>{
   if(e.target.id==="oForm"){e.preventDefault();const v=$("oInput").value.trim();if(!v){$("oInput").focus();return}
     if(S.oform.type==="new"){const carry=$("oCarry")&&$("oCarry").checked;const cat=S.cat;const id=await newOrder(cat,v);S.oid=id;S.orig="all";S.brand="all";S.oform=null;render();
       if(carry){toast("Bringing items…");const k=await carryInto(cat,id);render();toast(`${v} created with ${k} items. Enter the sizes.`)}else toast("Order created");return}
-    else{const o=curOrder();if(o){ords[o.id]={cat:o.cat,name:v,created:o.created||0,status:o.status||"draft"};saveOrder(o.id);toast("Renamed")}}
+    else{const o=curOrder();if(o){ords[o.id]={...ordBase(o),name:v};saveOrder(o.id);toast("Renamed")}}
     S.oform=null;render();return}
   if(e.target.id==="rnForm"){e.preventDefault();
     const v=$("rnInput").value.trim(),r=S.rename;if(!v||!r){S.rename=null;render();return}
@@ -569,6 +617,158 @@ async function photoData(id){
   }catch(e){return null}
 }
 let pdfBusy=false;
+/* ---------- order workflow: Confirm → Under process → Receive ---------- */
+const dShort=t=>t?new Date(t).toLocaleDateString("en-GB",{day:"2-digit",month:"short"}):"";
+function track(o){
+  const st=stOf(o),done=st==="received";
+  const steps=[["Ordered","📝",o.created,"done"],["Confirmed","✓",o.confirmedAt,"done"],["Under process","⏳",o.confirmedAt,done?"done":"now"],["Received","📦",o.receivedAt,done?"done":""]];
+  let h='<div class="trk">';
+  steps.forEach((x,i)=>{if(i)h+=`<div class="ln ${steps[i][3]==="done"||steps[i][3]==="now"?(i<3||done?"done":""):""}"></div>`;
+    h+=`<div class="st ${x[3]}"><div class="dot">${x[3]==="done"?"✓":x[1]}</div>${x[0]}<small>${x[3]?dShort(x[2]):""}</small></div>`});
+  return h+"</div>";
+}
+function missOf(o){
+  const rcv=o.rcv||null,rows=[];let tot=0;if(!rcv)return {tot:0,rows};
+  for(const it of orderItems(o.id)){
+    const r=rcv[it.id]||{},lines=[];
+    for(const k of Object.keys(it.sizes||{}).sort(sizeSort)){const ord=n(it.sizes[k]);if(!ord)continue;const got=k in r?n(r[k]):0,miss=Math.max(0,ord-got);if(miss>0){lines.push({k,ord,got,miss});tot+=miss}}
+    if(lines.length)rows.push({it,lines});
+  }
+  return {tot,rows};
+}
+function wfBlock(o){
+  if(!o)return "";const st=stOf(o),c=C(o.cat),q=sum(all().filter(i=>ordId(i)===o.id));
+  let h='<div class="wf">';
+  if(st!=="draft")h+=track(o);
+  if(st==="draft"){
+    if(S.cfm===o.id)h+=`<div class="cfmbox">Confirm <b>${esc(o.name)}</b>?<br>${q.q} ${c.unit} · ${money(q.a)}<div class="actions"><button class="btn xs primary" data-cfmyes>Yes, confirm</button><button class="btn xs" data-cfmno>No</button></div></div>`;
+    else h+=`<button class="wbtn g" data-confirm ${q.q?"":"disabled"}>✔ Confirm ${esc(o.name)}</button>${q.q?"":'<div class="note">Add quantities first.</div>'}`;
+  }else if(st==="process"){
+    h+=`<button class="wbtn o" data-receive>📦 Receive this order</button><div class="actions"><button class="btn xs" data-unconfirm>↩ Back to draft</button></div>`;
+  }else{
+    const m=missOf(o);
+    h+=m.tot?`<button class="wbtn r" data-mpdf="${esc(o.id)}">📄 Not-received PDF · ${m.tot} ${unitFor(c,m.tot)} missing</button>`:`<div class="note">✔ Everything arrived · items were added to Personal Inventory</div>`;
+  }
+  return h+"</div>";
+}
+const confirmedOrders=()=>CATS.flatMap(c=>ordersOf(c.k)).filter(o=>stOf(o)!=="draft");
+function allcTotals(){
+  let pairs=0,pcs=0,amt=0;const os=confirmedOrders();
+  for(const o of os){const s=sum(all().filter(i=>ordId(i)===o.id));amt+=s.a;if(o.cat==="shoes")pairs+=s.q;else pcs+=s.q}
+  return {os,pairs,pcs,amt};
+}
+function allcBtn(){const t=allcTotals();
+  return `<button class="allcb" data-allc><b>✅ All confirmed orders</b><span>${t.os.length?`${t.os.length} order${t.os.length>1?"s":""} · ${t.pairs} pairs${t.pcs?` + ${t.pcs} pcs`:""} · ${money(t.amt)}`:"Nothing confirmed yet"}</span></button>`}
+function vAllc(){
+  const t=allcTotals(),cols=["linear-gradient(135deg,#2563eb,#06b6d4)","linear-gradient(135deg,#059669,#84cc16)","linear-gradient(135deg,#9333ea,#ec4899)","linear-gradient(135deg,#ea580c,#f59e0b)","linear-gradient(135deg,#0891b2,#6366f1)"];
+  let h=`<div class="top"><button class="back" data-allcback>← Back</button><h1 class="pg"><em>All confirmed</em></h1></div>`;
+  if(!t.os.length)return h+`<div class="empty">No confirmed orders yet. Open a party and tap <b>Confirm</b>.</div>`;
+  h+=`<div class="sumbig"><div class="k">ALL CONFIRMED ORDERS</div><div class="big">${t.pairs} pairs${t.pcs?` <span style="font-size:20px">+ ${t.pcs} pcs</span>`:""}</div><div class="amt">${money(t.amt)}</div><div style="font-size:12px;margin-top:4px">${t.os.length} order${t.os.length>1?"s":""} confirmed</div></div>`;
+  t.os.forEach((o,i)=>{const s=sum(all().filter(x=>ordId(x)===o.id)),c=C(o.cat);
+    h+=`<div class="pc"><div class="pch" style="background:${cols[i%cols.length]}"><div><b>${esc(o.name)}</b><small>${s.q} ${c.unit} · ${money(s.a)}</small></div><span class="status st-${stOf(o)}">${STL[stOf(o)]}</span></div></div>`});
+  const g={};
+  for(const o of t.os)for(const it of all().filter(x=>ordId(x)===o.id&&qtyOf(x)>0)){
+    const k=[catOf(it),it.brand,it.model,it.name,it.origin||"vn"].join("|");
+    const e=g[k]||(g[k]={it,sizes:{},q:0,a:0,n:0});for(const [z,v] of Object.entries(it.sizes||{}))if(n(v))e.sizes[z]=(e.sizes[z]||0)+n(v);
+    e.q+=qtyOf(it);e.a+=amtOf(it);e.n++}
+  h+=`<div class="label" style="margin-top:6px;color:var(--muted)">All items together</div>`;
+  for(const e of Object.values(g).sort((a,b)=>a.it.brand.localeCompare(b.it.brand)||a.it.model.localeCompare(b.it.model))){
+    const c=C(catOf(e.it));
+    h+=`<div class="agrow">${e.it.photo?`<img src="${esc(photoUrl(e.it.photo))}" alt="" onerror="this.remove()">`:'<span class="nop"></span>'}<div style="flex:1;min-width:0"><b>${esc(e.it.brand)} · ${esc(e.it.model)}</b><div class="note">${esc(e.it.name)}</div><div class="szs" style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0">${Object.keys(e.sizes).sort(sizeSort).map(k=>sizeChip(c,k,e.sizes[k])).join("")}</div><div class="note"><b>${e.q} ${c.unit}</b> · ${money(e.a)}</div></div></div>`}
+  return h;
+}
+/* ---- receive ---- */
+function startReceive(o){
+  const q={};for(const it of orderItems(o.id)){q[it.id]={};for(const [k,v] of Object.entries(it.sizes||{}))if(n(v))q[it.id][k]=n(v)}
+  S.rcFrom=S.view;S.rc={oid:o.id,q,note:o.note||""};S.view="receive";S.cfm=null;render();window.scrollTo(0,0)}
+function vReceive(){
+  const o=ordersOf(S.cat).find(x=>x.id===S.rc.oid)||curOrder();if(!o){S.view="cat";return vCat()}
+  const c=C(o.cat),its=orderItems(o.id);let bad=0,h=`<div class="top"><button class="back" data-rcback>← Back to ${esc(o.name)}</button><h1 class="pg"><em>Receive</em> · ${esc(o.name)}</h1></div><div class="note">Set what really arrived. Less than ordered shows in red.</div>`;
+  for(const it of its){
+    const q=S.rc.q[it.id]||(S.rc.q[it.id]={}),ks=Object.keys(q).sort(sizeSort);
+    const ord=qtyOf(it),got=ks.reduce((a,k)=>a+n(q[k]),0),none=got===0;
+    let miss=0;for(const k of Object.keys(it.sizes||{})){const ov=n(it.sizes[k]);if(ov)miss+=Math.max(0,ov-n(q[k]))}bad+=miss;
+    h+=`<div class="rcard"><div class="rch ${none?"bad":""}">${it.photo?`<img src="${esc(photoUrl(it.photo))}" alt="" onerror="this.remove()">`:'<span class="nop"></span>'}<div><b>${esc(it.brand)} · ${esc(it.model)}${none?'<span class="tag">NOT RECEIVED</span>':""}</b><div class="note">${esc(it.name)} · QAR ${fmt(n(it.price))}</div><div class="lbl">Ordered ${ord} · Received ${got}</div></div></div>`;
+    for(const k of ks){const ov=n((it.sizes||{})[k]),cv=n(q[k]);
+      h+=`<div class="rrow ${cv<ov?"less":cv>ov?"more":""}"><span>Size ${esc(k)} <small>ordered ${ov}</small></span><span class="stp"><button class="sb ${cv<ov?"m":""}" data-rcm="${esc(it.id)}|${esc(k)}">−</button><b>${cv}</b><button class="sb ${cv>ov?"p":""}" data-rcp="${esc(it.id)}|${esc(k)}">+</button></span></div>`}
+    const more=c.sizes.filter(z=>!(z in q));
+    if(more.length)h+=`<select class="addsz" data-rcadd="${esc(it.id)}"><option value="">+ add another size…</option>${more.map(z=>`<option>${esc(z)}</option>`).join("")}</select>`;else h+='<div style="height:10px"></div>';
+    h+="</div>";
+  }
+  h+=`<div class="label" style="color:var(--muted)">📝 Note for ${esc(o.name)}</div><textarea class="rnote" id="rcNote" placeholder="What is wrong / what they must do…">${esc(S.rc.note||"")}</textarea>`;
+  h+=`<button class="wbtn r" data-rcpdf ${bad?"":"disabled"}>📄 Create PDF for ${esc(o.name)}${bad?` · ${bad} missing`:""}</button><button class="wbtn g" data-rcdo>✔ Receive &amp; add to ${o.cat==="shoes"?"Personal Inventory":"stock"}</button>`;
+  return h;
+}
+function rcStep(key,dl){const [id,k]=key.split("|"),q=S.rc.q[id];if(!q)return;q[k]=Math.max(0,n(q[k])+dl);render()}
+function rcFinal(){ // q -> rcv for missOf (only sizes ordered)
+  return JSON.parse(JSON.stringify(S.rc.q))}
+async function doReceive(){
+  const o=ordersOf(S.cat).find(x=>x.id===S.rc.oid);if(!o||stOf(o)==="received")return;
+  const rcv=rcFinal(),note=S.rc.note||"";
+  ords[o.id]={...ordBase(o),status:"received",receivedAt:Date.now(),rcv,note};
+  let msg="Order received";
+  if(o.cat==="shoes"){
+    const list=orderItems(o.id).map(it=>({brand:it.brand,model:it.model,colour:it.name,origin:it.origin||"vn",price:n(it.price),
+      photo:it.photo?(/^https?:/.test(it.photo)?it.photo:new URL(photoUrl(it.photo),location.href).href):"",sizes:rcv[it.id]||{}}));
+    try{const r=parent.nrOLReceive(list);msg=`Received · ${r.pieces} pairs added to Personal Inventory`}catch(e){msg="Received, but couldn't add to inventory. Reload the app."}
+  }else msg="Received (accessories/clothes stock isn't auto-added yet)";
+  persistAll();S.view="cat";S.rc=null;render();window.scrollTo(0,0);toast(msg);
+}
+function textImg(text,wMm,pt,color,bold){
+  const PX=8,cv=document.createElement("canvas"),f=pt*0.3528*PX*1.3,W=Math.round(wMm*PX);cv.width=W;
+  let cx=cv.getContext("2d");const font=`${bold?"700 ":""}${f}px "Hind Siliguri",system-ui,sans-serif`;cx.font=font;
+  const lines=[];for(const para of String(text).split("\n")){let cur="";for(const w of para.split(/(\s+)/)){if(cx.measureText(cur+w).width>W&&cur){lines.push(cur.trimEnd());cur=w.trimStart()}else cur+=w}lines.push(cur.trimEnd())}
+  const lh=f*1.35;cv.height=Math.ceil(lines.length*lh+4);cx=cv.getContext("2d");cx.font=font;cx.fillStyle=color;cx.textBaseline="top";
+  lines.forEach((l,i)=>cx.fillText(l,0,i*lh+2));
+  return {data:cv.toDataURL("image/png"),w:wMm,h:cv.height/PX}}
+async function makeMissingPDF(oid,rcvOverride,noteOverride){
+  if(pdfBusy)return;if(!window.jspdf){toast("PDF tool didn't load. Check your internet and reload.");return}
+  const o=ordersOf(S.cat).find(x=>x.id===oid)||ords[oid]&&{id:oid,...ords[oid]};if(!o)return;
+  const oo={...o,rcv:rcvOverride||o.rcv};const note=noteOverride!=null?noteOverride:(o.note||"");
+  const m=missOf(oo);if(!m.tot){toast("Nothing is missing");return}
+  pdfBusy=true;toast("Making PDF…");
+  try{
+    const photos={};await Promise.all(m.rows.filter(r=>r.it.photo).map(async r=>{photos[r.it.id]=await photoData(r.it.photo)}));
+    const {jsPDF}=window.jspdf;const doc=new jsPDF({unit:"mm",format:"a4"});const W=210,H=297,M=14,CW=W-2*M;let y=14;
+    const fill=h=>doc.setFillColor(...rgb(h)),txt=h=>doc.setTextColor(...rgb(h)),draw=h=>doc.setDrawColor(...rgb(h));
+    const date=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+    const c=C(o.cat);
+    function head(){fill("#F59E0B");doc.roundedRect(M,y,11,11,2,2,"F");txt("#FFFFFF");doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text("NR",M+5.5,y+7.4,{align:"center"});
+      txt("#111111");doc.setFontSize(11);doc.text("New Rima Best Trading",M+14,y+4.6);txt("#6B7280");doc.setFont("helvetica","normal");doc.setFontSize(8.5);doc.text("Doha, Qatar",M+14,y+9.2);
+      txt("#111111");doc.setFont("helvetica","bold");doc.setFontSize(12);doc.text("NOT RECEIVED REPORT",W-M,y+4.6,{align:"right"});txt("#6B7280");doc.setFont("helvetica","normal");doc.setFontSize(8.5);doc.text(date,W-M,y+9.2,{align:"right"});
+      fill("#7C3AED");doc.rect(M,y+13.5,CW,1.1,"F");y+=20}
+    function need(h){if(y+h>H-16){doc.addPage();y=14;head()}}
+    head();
+    const pn=textImg("Party: "+o.name,CW,18,"#B91C1C",true);doc.addImage(pn.data,"PNG",M,y,pn.w,pn.h);y+=pn.h+1;
+    txt("#6B7280");doc.setFont("helvetica","normal");doc.setFontSize(9);doc.text(`Order of ${new Date(o.confirmedAt||o.created||Date.now()).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"})} · Received ${new Date(o.receivedAt||Date.now()).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"})}`,M,y+3);y+=9;
+    for(const r of m.rows){
+      const it=r.it,bh=18+r.lines.length*12;need(bh+4);
+      draw("#FECACA");doc.setLineWidth(.35);fill("#FEF2F2");doc.roundedRect(M,y,CW,16,2.5,2.5,"FD");
+      if(photos[it.id])doc.addImage(photos[it.id],"JPEG",M+2,y+2,12,12);else{fill("#FFFFFF");doc.roundedRect(M+2,y+2,12,12,1.5,1.5,"F")}
+      txt("#111111");doc.setFont("helvetica","bold");doc.setFontSize(11);doc.text(`${it.brand} ${it.model}`.slice(0,48),M+17,y+6.8);
+      txt("#6B7280");doc.setFont("helvetica","normal");doc.setFontSize(9);doc.text(`${it.name} · QAR ${fmt(n(it.price))}`.slice(0,56),M+17,y+12);
+      y+=16;
+      for(const l of r.lines){
+        draw("#FEE2E2");doc.line(M,y,M+CW,y);
+        txt("#111111");doc.setFont("helvetica","bold");doc.setFontSize(10.5);doc.text(`Size ${l.k}`,M+3,y+5.6);
+        txt("#111111");doc.setFont("helvetica","normal");doc.setFontSize(10);doc.text(`Ordered ${l.ord} · Received ${l.got}`,M+30,y+5.6);
+        txt("#DC2626");doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text(`Missing ${l.miss}`,M+3,y+10.6);
+        y+=12}
+      y+=5;
+    }
+    need(14);fill("#FEE2E2");doc.roundedRect(M,y,CW,10,2,2,"F");txt("#111111");doc.setFont("helvetica","bold");doc.setFontSize(10.5);doc.text("Total missing",M+4,y+6.6);
+    txt("#DC2626");doc.text(`${m.tot} ${unitFor(c,m.tot)}`,W-M-4,y+6.6,{align:"right"});y+=15;
+    if(note.trim()){const ni=textImg(note.trim(),CW-12,11,"#111111",false);need(ni.h+16);
+      fill("#FEF2F2");doc.roundedRect(M,y,CW,ni.h+13,2,2,"F");fill("#EF4444");doc.rect(M,y,1.4,ni.h+13,"F");
+      txt("#111111");doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text("Note from New Rima",M+5,y+6);doc.addImage(ni.data,"PNG",M+5,y+9,ni.w,ni.h);y+=ni.h+18}
+    need(8);txt("#6B7280");doc.setFont("helvetica","normal");doc.setFontSize(8.5);doc.text("All other items were received OK.",M,y+3);
+    const pages=doc.getNumberOfPages();for(let p=1;p<=pages;p++){doc.setPage(p);txt("#9AA1AA");doc.setFontSize(8);doc.text(`New Rima · ${o.name} · ${date}`,M,H-7);doc.text(`Page ${p} of ${pages}`,W-M,H-7,{align:"right"})}
+    const blob=doc.output("blob"),fname=`NewRima-NotReceived-${(o.name||"Order").replace(/[^A-Za-z0-9]+/g,"-")}-${new Date().toISOString().slice(0,10)}.pdf`;
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=fname;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);toast("PDF saved");
+  }catch(e){console.error(e);toast("Couldn't make the PDF")}
+  finally{pdfBusy=false}
+}
+
 async function makePDF(btn){
   if(pdfBusy)return;
   if(!window.jspdf){toast("PDF tool didn't load. Check your internet and reload.");return}
